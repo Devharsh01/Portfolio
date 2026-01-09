@@ -1,0 +1,154 @@
+---
+title: 'Rendition'
+description: 'The official digital presence of Rendition, the premier Theatre Society of LNMIIT. Features a 3D immersive experience, enrollment system, and complete club management.'
+category: 'College Society Website'
+publishedAt: '2024-01-01'
+techs: 'react,nodejs,mongodb,threejs,tailwindcss'
+banner: 'projects/flixify.png'
+link: 'https://rendition.onrender.com/'
+github: 'https://github.com/Devharsh01/Rendition-Website'
+---
+
+> ## Short Explanation
+
+**Rendition** is a dynamic web platform designed to represent the artistic spirit of the LNMIIT Theatre Society. It serves as a central hub to showcase the society's productions, introduce the talented team behind the curtains, and provide essential contact information for collaborations.
+
+> ## Project Goals
+
+The platform was built to serve multiple purposes for the society:
+
+- **Central Hub**: Showcase the society's productions and introduce the team.
+- **Recruitment**: Facilitate an interactive **enrollment system** for aspiring thespians to register and join the club.
+- **Immersive Experience**: Leverage modern 3D graphics (Three.js) and smooth animations to reflect the creativity of theatre arts.
+- **Communication**: Provide essential contact information and automated inquiry handling.
+
+<blockquote className='with-icons'>
+  ## Tech Stack Used
+  <div className='not-prose mt-2'>
+    <TechIcons techs={['react', 'nodejs', 'mongodb', 'threejs', 'tailwindcss']} />
+  </div>
+</blockquote>
+
+The project is built on a robust MERN stack with specialized libraries for graphics and animations:
+
+### Frontend
+- **Build Tool**: Vite
+- **Library**: React.js
+- **Styling**: Tailwind CSS, PostCSS
+- **Animations & 3D**: React Three Fiber, Drei, GSAP, Framer Motion, React Tilt
+- **Icons**: Lucide React
+- **Services**: EmailJS (inquiries), Cloudinary SDK (media optimization)
+
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB
+- **Authentication**: JWT & Bcrypt
+- **Utilities**: Nodemailer (notifications), Multer (file handling), Axios, Validator, Dotenv
+
+> ## Features
+
+### Interactive 3D Experience
+Integrated **Three.js** (via React Three Fiber) and **GSAP** to create a visually stunning, immersive frontend experience with custom 3D visuals.
+
+### Enrollment System
+A robust, full-stack form handling system that manages new user registrations and streamlines the club recruitment process.
+
+### Secure Authentication
+Implements `bcryptjs` for data protection and `jsonwebtoken` (JWT) to ensure secure user sessions and protected routes.
+
+### Media Gallery
+Optimized image and media delivery powered by **Cloudinary**, allowing the society to showcase high-quality photos of productions.
+
+### Smooth Navigation
+Seamless page transitions and interactive timeline views built using `framer-motion` and `react-vertical-timeline-component`.
+
+### Automated Notifications
+Direct integration with **EmailJS** for user inquiries and **Nodemailer** for sending automated confirmation emails to enrolled users.
+
+### Database Management
+Utilizes **MongoDB** and **Mongoose** for reliable, scalable storage of user data, enrollment records, and society content.
+
+> ## Folder Structure
+
+The project follows a clean separation of concerns:
+
+```bash
+Rendition-Website/
+├── backend/        # Express API & Database Logic
+├── frontend/       # React + Vite Client Application
+└── README.md       # Project Documentation
+```
+
+> ## Getting Started
+
+### Prerequisites
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+- [MongoDB](https://www.mongodb.com/) (Local or Atlas URI)
+
+### Installation
+
+Clone the repository:
+```bash
+git clone https://github.com/Devharsh01/Rendition-Website.git
+cd Rendition-Website
+```
+
+**1. Backend Setup**
+Navigate to the backend folder and install dependencies:
+```bash
+cd backend
+npm install
+```
+
+**2. Frontend Setup**
+Navigate to the frontend folder and install dependencies:
+```bash
+cd ../frontend
+npm install
+```
+
+### Environment Variables
+
+**Backend (.env)**
+Create a `.env` file in the `backend/` directory:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+EMAIL_SERVICE=gmail
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_email_app_password
+```
+
+**Frontend (.env)**
+Create a `.env` file in the `frontend/` directory if required, or configure Cloudinary/EmailJS keys in your source files.
+
+> ## Running the Project
+
+To run the full stack application, use two terminal windows:
+
+**Start Backend Server:**
+```bash
+cd backend
+npm start
+# or for dev: npx nodemon index.js
+```
+
+**Start Frontend Application:**
+```bash
+cd frontend
+npm run dev
+```
+
+> ## Contributing & License
+
+We welcome contributions!
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/NewFeature`).
+3. Commit your changes (`git commit -m 'Add NewFeature'`).
+4. Push to the branch (`git push origin feature/NewFeature`).
+5. Open a Pull Request.
+
+This project is licensed under the **ISC License**.

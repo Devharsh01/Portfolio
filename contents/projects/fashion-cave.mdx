@@ -1,0 +1,190 @@
+---
+title: 'Fashion Cave'
+description: 'A modern, full-stack e-commerce platform tailored for fashion retail, featuring a dynamic storefront, a dedicated admin dashboard, and a robust backend API.'
+category: 'E-commerce'
+publishedAt: '2024-05-15'
+techs: 'React,Nodejs,Express,MongoDB,Stripe'
+banner: ''
+link: 'https://fashion-cave-frontend.onrender.com/'
+github: 'https://github.com/Devharsh01/Fashion-Cave'
+---
+
+> ## Short Explanation
+
+Fashion Cave is a full-featured e-commerce platform built for fashion retail. It provides a polished customer storefront, a powerful admin dashboard for store owners, and a secure REST API backend. The project focuses on performance, responsive UI/UX with advanced animations, and secure payment and authentication flows.
+
+> ## Project Goals
+
+Fashion Cave aims to:
+- Deliver an engaging, modern shopping experience with smooth animations and responsive design.
+- Provide a dedicated admin interface for product, order, and user management.
+- Implement a secure and scalable backend using proven industry patterns.
+- Integrate payment processing and automated email notifications for a real store-ready flow.
+- Demonstrate a practical MERN stack application with modular separation (frontend, admin, backend).
+
+<blockquote className='with-icons'>
+  ## Tech Stack Used
+  <div className='not-prose mt-2'>
+    <TechIcons techs={['react', 'nodejs', 'express', 'mongodb', 'stripe', 'gsap']} />
+  </div>
+</blockquote>
+
+The project leverages a typical MERN stack and several supporting tools:
+
+- Frontend & Admin: React.js with animation libraries (GSAP, Locomotive Scroll, Lottie).
+- Backend: Node.js + Express, MongoDB via Mongoose.
+- Authentication & Security: bcryptjs for password hashing, jsonwebtoken (JWT) for sessions.
+- Payment: Stripe integration for secure payments.
+- Email & Uploads: Nodemailer for emails, Multer for file uploads.
+- Environment: Dotenv for configuration and Validator for input validation.
+
+> ## Features
+
+### Client Side (Storefront)
+- Immersive UI/UX with smooth scrolling and animations using locomotive-scroll and GSAP.
+- Responsive design that works across desktop and mobile.
+- Product catalog with infinite scroll / lazy loading for improved browsing experience.
+- Shopping cart, add-to-cart flows and client-side state management for real-time cart updates.
+- Product details pages, filters, and search (as implemented).
+
+### Admin Dashboard
+- Product management: create, edit, and delete products with images and metadata.
+- Order management and dashboard analytics to track store performance.
+- User management and secure admin-only routes.
+- Admin-specific UI for handling inventory and promotions.
+
+### Backend & Security
+- Secure authentication and authorization using JWT and bcryptjs.
+- Stripe payment integration for processing transactions.
+- Nodemailer integration for transactional emails (order confirmations, notifications).
+- File/image handling with Multer for product image uploads.
+- Validation utilities to sanitize and validate incoming requests.
+
+> ## Folder Structure
+
+The repository is organized into three main components to separate responsibilities and simplify deployment:
+
+```bash
+Fashion-Cave/
+├── admin/          # React Admin Dashboard (owner tools)
+├── backend/        # Express & Node.js API Server (routes, controllers, models)
+├── frontend/       # React Storefront Application (customer-facing)
+└── README.md       # Project Documentation
+```
+
+> ## Getting Started
+
+### Prerequisites
+Make sure you have the following installed on your machine:
+- Node.js (v14+ recommended)
+- MongoDB (local or Atlas URI)
+- A Stripe account (for payment processing)
+- An email account or SMTP provider for Nodemailer (e.g., Gmail with app password)
+
+### Installation
+
+Clone the repository and install dependencies for each component:
+
+```bash
+git clone https://github.com/Devharsh01/Fashion-Cave.git
+cd Fashion-Cave
+```
+
+1. Backend
+```bash
+cd backend
+npm install
+```
+
+2. Frontend (Store)
+```bash
+cd ../frontend
+npm install
+```
+
+3. Admin Dashboard
+```bash
+cd ../admin
+npm install
+```
+
+### Environment Variables
+
+Create a .env file in the backend directory with the following variables (example):
+
+```env
+PORT=4000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+EMAIL_SERVICE=gmail
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_email_app_password
+```
+
+Notes:
+- MONGO_URI: Use your MongoDB connection string (local or Atlas).
+- JWT_SECRET: Choose a secure secret for signing JWT tokens.
+- STRIPE_SECRET_KEY: Your Stripe secret key from the Stripe dashboard.
+- EMAIL_*: Credentials for sending transactional emails using Nodemailer. If using Gmail, create an app password for increased security.
+
+> ## Running the Project
+
+Run backend and frontend/admin servers in separate terminals (or use a process manager / concurrently in development).
+
+Start the backend server:
+```bash
+cd backend
+npm run start
+# or for development with auto-reload:
+npx nodemon index.js
+```
+
+Start the frontend (store) application:
+```bash
+cd frontend
+npm start
+```
+
+Start the admin dashboard:
+```bash
+cd admin
+npm start
+```
+
+Typical default ports (can vary depending on local configuration):
+- Backend API: http://localhost:4000 (or PORT set in .env)
+- Frontend (store): http://localhost:3000
+- Admin dashboard: http://localhost:3001 (React may prompt to run on an alternate port if 3000 is occupied)
+
+> ## Deployment Tips
+
+- Deploy the backend to services like Heroku, Render, or a VPS. Ensure environment variables are correctly configured on the host.
+- Use a managed MongoDB provider (MongoDB Atlas) for production reliability.
+- Serve frontend and admin from static hosting (Vercel, Netlify) or from the backend if you prefer a combined deployment.
+- Keep Stripe keys and JWT secrets out of the client — only the backend should use secret keys.
+
+> ## Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a feature branch:
+```bash
+git checkout -b feature/YourFeatureName
+```
+3. Commit your changes:
+```bash
+git commit -m "Add: YourFeatureDescription"
+```
+4. Push to your branch and open a Pull Request.
+
+Please follow standard best practices (clear commit messages, small focused PRs, and descriptive PR descriptions).
+
+> ## License
+
+This project is licensed under the ISC License.
+
+> ## Contact & Support
+
+If you have questions or need help setting up the project locally, open an issue in the repository or reach out via GitHub. Include your OS, Node version, and a description of the problem for faster troubleshooting.
