@@ -1,3 +1,16 @@
 {
-  "extends": "next/core-web-vitals"
+  "plugins": ["@typescript-eslint"],
+  "settings": {
+    "next": {
+      "rootDir": "app/"
+    }
+  },
+  "rules": {
+    "@next/next/no-html-link-for-pages": ["error", "app/"], 
+    "react/no-unescaped-entities": "off"
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
+  ]
 }
