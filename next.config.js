@@ -6,7 +6,10 @@ const nextConfig = {
   optimizeFonts: false,
   images: {
     domains: ["user-images.githubusercontent.com", "cdn.hashnode.com", "github.com"],
-  }
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;

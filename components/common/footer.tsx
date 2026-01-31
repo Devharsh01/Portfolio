@@ -17,6 +17,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="text-neutral-400 hover:text-blue-500 transition-colors"
             >
+              {/* @ts-expect-error react-icons compatibility issue with React 19 types */}
               <FaGithub size={20} />
             </a>
             <a
@@ -25,6 +26,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="text-neutral-400 hover:text-blue-500 transition-colors"
             >
+              {/* @ts-expect-error react-icons compatibility issue with React 19 types */}
               <FaLinkedin size={20} />
             </a>
             <a
@@ -33,6 +35,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="text-neutral-400 hover:text-blue-500 transition-colors"
             >
+              {/* @ts-expect-error react-icons compatibility issue with React 19 types */}
               <FaXTwitter size={20} />
             </a>
           </div>
