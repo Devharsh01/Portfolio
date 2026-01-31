@@ -19,7 +19,7 @@ export const devProjects = [
     keywords: ["rendition", "lnmiit", "javascript", "theatre", "society", "club-website", "auditions", "recruitment","enrollment-form", "gallery", "contact-form", "3d", "3d-visuals", "3d-animations", "react", "reactjs", "vite", "tailwind", "tailwindcss", "postcss", "threejs", "three.js", "react-three-fiber", "drei", "gsap", "framer-motion","lucide-react", "cloudinary", "emailjs", "nodemailer", "node", "nodejs", "express", "mongodb", "mongoose", "jwt", "jsonwebtoken", "bcryptjs", "multer", "smooth-page-transitions", "registration" , "authentication", "protected-routes", "file", "uploads", "media-management", "contact-and-inquiries", "responsive", "mobile", "friendly"],
     github: "https://github.com/Devharsh01/Rendition-Website",
     demo: "https://rendition.onrender.com/",
-    image: require("E:\\All programs\\WebD\\Portfolio-v2\\public\\projects\\odunsi.png"),
+    image: require("public/projects/odunsi-flip.png"),
     available: true,
   },
   {
@@ -31,7 +31,7 @@ export const devProjects = [
     keywords: ["fashion-cave", "fashion", "javascript", "retail", "ecommerce", "e-commerce", "infinite-scroll", "infinite-product-scroll", "admin", "inventory-management", "checkout", "cart", "react", "reactjs", "react-router-dom", "node", "nodejs", "express", "mongodb", "mongoose", "stripe", "stripe-api","nodemailer", "multer", "gsap", "locomotive-scroll", "lottie", "lottie-web", "jwt", "jsonwebtoken", "bcryptjs", "validator", "dotenv", "responsive-design", "mobile-first", "infinite-scrolling-catalog", "client-side-cart", "server-side-api", "authentication","admin-panel", "payment", "stripe", "email", "file"],
     github: "https://github.com/Devharsh01/Fashion-Cave",
     demo: "https://fashion-cave-frontend.onrender.com/",
-    image: require("../public/projects/synthetix-flip.png"),
+    image: require("public/projects/synthetix-flip.png"),
     available: true,
   }
 ];
