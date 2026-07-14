@@ -29,7 +29,7 @@ const ConsoleMessage = () => {
     };
 
     console.clear();
-    console.log('%cHey, Rushikesh here! 👋', styles.title);
+    console.log('%cHey, Dev Harsh here! 👋', styles.title);
     console.log('%c🚀 Welcome to my portfolio!', styles.message);
     console.log('%c💻 Feel free to explore the code.', styles.message);
     console.log('%c⚡ Built with Next.js, TypeScript, and Tailwind CSS', styles.message);

@@ -8,11 +8,20 @@ import {
   BaseMessage,
 } from "@langchain/core/messages";
 import { StateGraph, MessagesAnnotation } from "@langchain/langgraph";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { headers } from "next/headers";
 // import { queryVectorStore } from "@/lib/embeddings";
 import jwt from "jsonwebtoken";
 import { characterContent } from "@/constants/character";
+import {
+  PORTFOLIO_URL,
+  RESUME_URL,
+  EMAIL,
+  PHONE_DISPLAY,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  LEETCODE_URL,
+} from "@/constants/site";
 
 // JWT Configuration
 const JWT_SECRET = process.env.JWT_SECRET || "";
@@ -50,8 +59,7 @@ export function generateToken(payload: any): string {
 // Add CORS check middleware
 function isAllowedOrigin(origin: string | null) {
   const allowedOrigins = [
-    "https://rushikeshnimkar.xyz",
-    "https://www.rushikeshnimkar.xyz",
+    PORTFOLIO_URL,
 
     // Include localhost for development(uncomment for development)
     "http://localhost:3000",
@@ -82,12 +90,8 @@ function needsWebSearch(message: string): boolean {
     "2023",
     "2024",
     "2025",
-    "sui",
-    "solana",
-    "erebrus",
-    "netsepio",
+    "2026",
     "search",
-    "deepseek",
   ]);
 
   const lowerMessage = message.toLowerCase();
@@ -100,25 +104,26 @@ function needsWebSearch(message: string): boolean {
 const SKILLS_PATTERN =
   /skills|technologies|tech stack|programming|languages|frameworks|tools|libraries|proficient|expertise|capable|abilities/i;
 const PROJECTS_PATTERN =
-  /projects|portfolio|work|applications|apps|websites|developed|built|created|made|showcase|gitsplit|cryptorage|terminal ai|mystic tarot/i;
+  /projects|portfolio|work|applications|apps|websites|developed|built|created|made|showcase|fashion cave|rendition|stable diffusion|image generation|patient management|hospital system|exec os|executive assistant|execos/i;
 const EXPERIENCE_PATTERN =
-  /experience|work history|job|career|background|employment|company|lazarus|position|role/i;
+  /experience|work history|job|career|background|employment|company|flexport|deloitte|intern|internship|position|role/i;
 const EDUCATION_PATTERN =
-  /education|degree|university|college|school|academic|study|studied|aissms|engineering|be|computer|pune/i;
+  /education|degree|university|college|school|academic|study|studied|lnmiit|lnm|engineering|btech|b\.tech|computer|jaipur/i;
 const CONTACT_PATTERN =
-  /contact|email|phone|reach|get in touch|connect|social media|linkedin|github|twitter|message|call/i;
+  /contact|email|phone|reach|get in touch|connect|social media|message|call/i;
 const AWARDS_PATTERN =
-  /awards|achievements|recognition|hackathon|solana|radar|sui|overflow|won|prize|honor/i;
-const LINKS_PATTERN = 
-  /links|urls|websites|resources|portfolio|resume|github|linkedin|social|profiles|connect|follow|check out|visit/i;
+  /awards|achievements|recognition|won|prize|honor/i;
+const LINKS_PATTERN =
+  /links|urls|websites|resources|portfolio|social|profiles|connect|follow/i;
 
 // Add more specific patterns for individual link types
 const RESUME_PATTERN = /resume|cv|curriculum vitae/i;
 const GITHUB_PATTERN = /github|code|repository|repositories|source code/i;
 const LINKEDIN_PATTERN = /linkedin|professional profile|professional network/i;
+const LEETCODE_PATTERN = /leetcode|competitive programming|knight|rating/i;
 const PORTFOLIO_PATTERN = /portfolio website|personal website|portfolio site/i;
 const PROJECT_LINKS_PATTERN =
-  /project links|project urls|project websites|hackathon projects/i;
+  /project links|project urls|project websites|github projects/i;
 
 // Add more specific patterns for individual contact types
 const EMAIL_PATTERN =
@@ -128,12 +133,16 @@ const LOCATION_PATTERN =
   /location|address|where.*live|where.*based|city|town|where.*from/i;
 
 // Add specific patterns for individual projects
-const GITSPLIT_PATTERN =
-  /gitsplit|funding platform|open-source funding|ethglobal/i;
-const CRYPTORAGE_PATTERN =
-  /cryptorage|chrome extension|secure storage|dorahacks|walrus blockchain/i;
-const TERMINAL_AI_PATTERN =
-  /terminal ai|assistant|cli tool|command line|npm package|terminal-ai-assistant/i;
+const FASHION_CAVE_PATTERN =
+  /fashion cave|fashion-cave|ecommerce|e-commerce|online store|shopping platform/i;
+const RENDITION_PATTERN =
+  /rendition|theatre|theater|club website|society website|3d experience/i;
+const STABLE_DIFFUSION_PATTERN =
+  /stable diffusion|image generation|super-resolution|super resolution|diffusion model|ldm|satellite imagery/i;
+const PATIENT_MANAGEMENT_PATTERN =
+  /patient management|patient-management|medical system|hospital system|appointment service/i;
+const EXEC_OS_PATTERN =
+  /exec os|exec-os|execos|autonomous AI|executive assistant|Vercel AI SDK|Claude API/i;
 
 // Update the detectQueryType function to handle specific project types
 function detectQueryType(message: string): string | null {
@@ -141,23 +150,45 @@ function detectQueryType(message: string): string | null {
 
   // Check for specific project types
   if (
-    GITSPLIT_PATTERN.test(lowerMessage) &&
-    !CRYPTORAGE_PATTERN.test(lowerMessage) &&
-    !TERMINAL_AI_PATTERN.test(lowerMessage)
+    FASHION_CAVE_PATTERN.test(lowerMessage) &&
+    !RENDITION_PATTERN.test(lowerMessage) &&
+    !STABLE_DIFFUSION_PATTERN.test(lowerMessage) &&
+    !PATIENT_MANAGEMENT_PATTERN.test(lowerMessage) &&
+    !EXEC_OS_PATTERN.test(lowerMessage)
   )
-    return "gitsplit_project";
+    return "fashion_cave_project";
   if (
-    CRYPTORAGE_PATTERN.test(lowerMessage) &&
-    !GITSPLIT_PATTERN.test(lowerMessage) &&
-    !TERMINAL_AI_PATTERN.test(lowerMessage)
+    RENDITION_PATTERN.test(lowerMessage) &&
+    !FASHION_CAVE_PATTERN.test(lowerMessage) &&
+    !STABLE_DIFFUSION_PATTERN.test(lowerMessage) &&
+    !PATIENT_MANAGEMENT_PATTERN.test(lowerMessage) &&
+    !EXEC_OS_PATTERN.test(lowerMessage)
   )
-    return "cryptorage_project";
+    return "rendition_project";
   if (
-    TERMINAL_AI_PATTERN.test(lowerMessage) &&
-    !GITSPLIT_PATTERN.test(lowerMessage) &&
-    !CRYPTORAGE_PATTERN.test(lowerMessage)
+    STABLE_DIFFUSION_PATTERN.test(lowerMessage) &&
+    !FASHION_CAVE_PATTERN.test(lowerMessage) &&
+    !RENDITION_PATTERN.test(lowerMessage) &&
+    !PATIENT_MANAGEMENT_PATTERN.test(lowerMessage) &&
+    !EXEC_OS_PATTERN.test(lowerMessage)
   )
-    return "terminal_ai_project";
+    return "stable_diffusion_project";
+  if (
+    PATIENT_MANAGEMENT_PATTERN.test(lowerMessage) &&
+    !FASHION_CAVE_PATTERN.test(lowerMessage) &&
+    !RENDITION_PATTERN.test(lowerMessage) &&
+    !STABLE_DIFFUSION_PATTERN.test(lowerMessage) &&
+    !EXEC_OS_PATTERN.test(lowerMessage)
+  )
+    return "patient_management_project";
+  if (
+    EXEC_OS_PATTERN.test(lowerMessage) &&
+    !FASHION_CAVE_PATTERN.test(lowerMessage) &&
+    !RENDITION_PATTERN.test(lowerMessage) &&
+    !STABLE_DIFFUSION_PATTERN.test(lowerMessage) &&
+    !PATIENT_MANAGEMENT_PATTERN.test(lowerMessage)
+  )
+    return "exec_os_project";
 
   // Check for specific contact types
   if (
@@ -180,6 +211,7 @@ function detectQueryType(message: string): string | null {
   if (GITHUB_PATTERN.test(lowerMessage) && !lowerMessage.includes("projects"))
     return "github_link";
   if (LINKEDIN_PATTERN.test(lowerMessage)) return "linkedin_link";
+  if (LEETCODE_PATTERN.test(lowerMessage)) return "leetcode_link";
   if (PORTFOLIO_PATTERN.test(lowerMessage)) return "portfolio_link";
   if (PROJECT_LINKS_PATTERN.test(lowerMessage)) return "project_links";
 
@@ -255,13 +287,12 @@ async function callOpenRouter(messages: BaseMessage[], isSearchQuery: boolean): 
         method: "POST",
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "HTTP-Referer": "https://rushikeshnimkar.xyz",
+          "HTTP-Referer": PORTFOLIO_URL,
           "X-Title": "Dev Harsh's Portfolio",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "mistralai/mistral-7b-instruct",
-          // model: "nousresearch/deephermes-3-llama-3-8b-preview:free",
+          model: "meta-llama/llama-3.1-8b-instruct",
           messages: formattedMessages,
           temperature: 0,
         }),
@@ -300,37 +331,49 @@ const CACHE_TTL = 1000 * 60 * 30; // 30 minutes
 function generateStructuredResponse(queryType: string): string {
   // Define individual project templates
   const projectTemplates: Record<string, any> = {
-    gitsplit_project: [
+    patient_management_project: [
       {
-        title: "Gitsplit",
+        title: "Patient Management System",
         description:
-          "A funding platform for open-source projects using Next.js, Golang, and PostgreSQL.",
-        technologies: ["Next.js", "Golang", "PostgreSQL", "GitHub API"],
-        link: "https://ethglobal.com/showcase/gitsplit-pkp5d",
+          "A microservices-based Patient Management System with 5+ independent services (patient, appointment, billing), utilizing Spring Boot, Docker, Apache Kafka for event-driven messaging, and AWS LocalStack.",
+        technologies: ["Java", "Spring Boot", "Microservices", "Kafka", "Docker", "AWS LocalStack"],
+        link: "https://github.com/Devharsh01/Patient-Management-System",
       },
     ],
-    cryptorage_project: [
+    exec_os_project: [
       {
-        title: "Cryptorage",
+        title: "Exec OS: Autonomous AI Agent SaaS",
         description:
-          "Chrome extension using React.js and Supabase for secure data storage with blockchain integration.",
-        technologies: [
-          "React.js",
-          "Supabase",
-          "Walrus Blockchain",
-          "OCR",
-          "Gemini Nano",
-        ],
-        link: "https://dorahacks.io/buidl/16435",
+          "A full-stack autonomous AI 'Executive Assistant' SaaS that runs background tasks autonomously, processes Gmail/Calendar data, features a heartbeat mechanism via Cron, and reasoning logs transparency.",
+        technologies: ["Next.js 15", "React 19", "TypeScript", "Vercel AI SDK", "Claude API", "Drizzle ORM", "PostgreSQL"],
+        link: "https://github.com/Devharsh01/Exec-OS",
       },
     ],
-    terminal_ai_project: [
+    fashion_cave_project: [
       {
-        title: "Terminal AI Assistant",
+        title: "Fashion Cave",
         description:
-          "Node.js CLI tool that converts natural language into Windows command line instructions.",
-        technologies: ["Node.js", "DeepSeek-V3 AI", "CLI"],
-        link: "https://www.npmjs.com/package/terminal-ai-assistant",
+          "A modern, full-stack fashion e-commerce platform with a dynamic storefront, admin dashboard, and a scalable Node.js/Express backend over MongoDB.",
+        technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "Stripe", "REST APIs"],
+        link: "https://github.com/Devharsh01/Fashion-Cave",
+      },
+    ],
+    rendition_project: [
+      {
+        title: "Rendition",
+        description:
+          "The official digital presence of Rendition, the Theatre Society of LNMIIT — featuring a 3D immersive experience, enrollment system, and complete club management.",
+        technologies: ["React", "Node.js", "MongoDB", "Three.js", "Tailwind CSS", "Framer Motion"],
+        link: "https://github.com/Devharsh01/Rendition-Website",
+      },
+    ],
+    stable_diffusion_project: [
+      {
+        title: "High-Resolution Image Generation using Stable Diffusion",
+        description:
+          "Implemented Diffusion and Latent Diffusion Models achieving 4x super-resolution on satellite imagery, with +2.47 dB PSNR and +0.044 SSIM improvements over GANs.",
+        technologies: ["Python", "PyTorch", "TensorFlow", "Stable Diffusion", "Hugging Face", "GANs"],
+        link: "https://github.com/Devharsh01/",
       },
     ],
   };
@@ -338,15 +381,15 @@ function generateStructuredResponse(queryType: string): string {
   // Define individual contact templates
   const contactTemplates: Record<string, any> = {
     email_contact: {
-      email: "rushikeshnimkar396@gmail.com",
+      email: EMAIL,
       type: "Email",
     },
     phone_contact: {
-      phone: "+919322675715",
+      phone: PHONE_DISPLAY,
       type: "Phone",
     },
     location_contact: {
-      location: "Nagpur",
+      location: "India",
       type: "Location",
     },
   };
@@ -356,7 +399,7 @@ function generateStructuredResponse(queryType: string): string {
     resume_link: [
       {
         title: "Resume",
-        url: "https://rushikeshnimkar.xyz/resume",
+        url: RESUME_URL,
         description:
           "View my detailed resume with skills, experience, and education",
       },
@@ -364,7 +407,7 @@ function generateStructuredResponse(queryType: string): string {
     github_link: [
       {
         title: "GitHub Profile",
-        url: "https://github.com/Rushikeshnimkar",
+        url: GITHUB_URL,
         description:
           "Check out my code repositories and open-source contributions",
       },
@@ -372,32 +415,49 @@ function generateStructuredResponse(queryType: string): string {
     linkedin_link: [
       {
         title: "LinkedIn Profile",
-        url: "https://www.linkedin.com/in/rushikesh-nimkar-0961361ba/",
+        url: LINKEDIN_URL,
         description: "Connect with me professionally on LinkedIn",
+      },
+    ],
+    leetcode_link: [
+      {
+        title: "LeetCode Profile",
+        url: LEETCODE_URL,
+        description: "Knight badge holder (Rating: 1874) — see my problem-solving",
       },
     ],
     portfolio_link: [
       {
         title: "Portfolio Website",
-        url: "https://rushikeshnimkar.xyz",
+        url: PORTFOLIO_URL,
         description: "My personal portfolio showcasing projects and skills",
       },
     ],
     project_links: [
       {
-        title: "Gitsplit Project",
-        url: "https://ethglobal.com/showcase/gitsplit-pkp5d",
-        description: "Funding platform for open-source projects",
+        title: "Patient Management System",
+        url: "https://github.com/Devharsh01/Patient-Management-System",
+        description: "Microservices-based Patient Management System",
       },
       {
-        title: "Cryptorage Project",
-        url: "https://dorahacks.io/buidl/16435",
-        description: "Chrome extension for secure data storage",
+        title: "Exec OS",
+        url: "https://github.com/Devharsh01/Exec-OS",
+        description: "Autonomous AI Agent SaaS",
       },
       {
-        title: "Terminal AI Assistant",
-        url: "https://www.npmjs.com/package/terminal-ai-assistant",
-        description: "CLI tool for natural language command conversion",
+        title: "Fashion Cave",
+        url: "https://github.com/Devharsh01/Fashion-Cave",
+        description: "Full-stack fashion e-commerce platform",
+      },
+      {
+        title: "Rendition Website",
+        url: "https://github.com/Devharsh01/Rendition-Website",
+        description: "Theatre society website with a 3D immersive experience",
+      },
+      {
+        title: "GitHub",
+        url: GITHUB_URL,
+        description: "All my repositories and open-source work",
       },
     ],
   };
@@ -405,132 +465,145 @@ function generateStructuredResponse(queryType: string): string {
   // Define the structured data templates for general categories
   const structuredDataTemplates: Record<string, any> = {
     skills: [
-      { name: "JavaScript", category: "Programming Language" },
       { name: "Java", category: "Programming Language" },
+      { name: "Python", category: "Programming Language" },
+      { name: "C++", category: "Programming Language" },
+      { name: "JavaScript", category: "Programming Language" },
+      { name: "TypeScript", category: "Programming Language" },
       { name: "React.js", category: "Frontend Framework" },
       { name: "Next.js", category: "Frontend Framework" },
-      { name: "TypeScript", category: "Programming Language" },
       { name: "Node.js", category: "Backend" },
+      { name: "Express.js", category: "Backend" },
+      { name: "REST APIs", category: "Backend" },
+      { name: "TailwindCSS", category: "Frontend" },
+      { name: "PyTorch", category: "AI/ML" },
+      { name: "TensorFlow", category: "AI/ML" },
+      { name: "AWS", category: "Cloud" },
+      { name: "Terraform", category: "Cloud" },
+      { name: "Snowflake", category: "Data" },
+      { name: "Databricks", category: "Data" },
       { name: "MySQL", category: "Database" },
       { name: "PostgreSQL", category: "Database" },
-      { name: "Docker", category: "DevOps" },
+      { name: "MongoDB", category: "Database" },
+      { name: "CI/CD", category: "DevOps" },
       { name: "Git", category: "Version Control" },
-      { name: "AWS EC2", category: "Cloud" },
-      { name: "Google Cloud", category: "Cloud" },
     ],
     projects: [
       {
-        title: "Gitsplit",
+        title: "Patient Management System",
         description:
-          "A funding platform for open-source projects using Next.js, Golang, and PostgreSQL.",
-        technologies: ["Next.js", "Golang", "PostgreSQL", "GitHub API"],
-        link: "https://ethglobal.com/showcase/gitsplit-pkp5d",
+          "A microservices-based Patient Management System with 5+ independent services (patient, appointment, billing), utilizing Spring Boot, Docker, Apache Kafka for event-driven messaging, and AWS LocalStack.",
+        technologies: ["Java", "Spring Boot", "Microservices", "Kafka", "Docker", "AWS LocalStack"],
+        link: "https://github.com/Devharsh01/Patient-Management-System",
       },
       {
-        title: "Cryptorage",
+        title: "Exec OS: Autonomous AI Agent SaaS",
         description:
-          "Chrome extension using React.js and Supabase for secure data storage with blockchain integration.",
-        technologies: [
-          "React.js",
-          "Supabase",
-          "Walrus Blockchain",
-          "OCR",
-          "Gemini Nano",
-        ],
-        link: "https://dorahacks.io/buidl/16435",
+          "A full-stack autonomous AI 'Executive Assistant' SaaS that runs background tasks autonomously, processes Gmail/Calendar data, features a heartbeat mechanism via Cron, and reasoning logs transparency.",
+        technologies: ["Next.js 15", "React 19", "TypeScript", "Vercel AI SDK", "Claude API", "Drizzle ORM", "PostgreSQL"],
+        link: "https://github.com/Devharsh01/Exec-OS",
       },
       {
-        title: "Terminal AI Assistant",
+        title: "Fashion Cave",
         description:
-          "Node.js CLI tool that converts natural language into Windows command line instructions.",
-        technologies: ["Node.js", "DeepSeek-V3 AI", "CLI"],
-        link: "https://www.npmjs.com/package/terminal-ai-assistant",
+          "A modern, full-stack fashion e-commerce platform with a dynamic storefront, admin dashboard, and a scalable Node.js/Express backend over MongoDB.",
+        technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "Stripe", "REST APIs"],
+        link: "https://github.com/Devharsh01/Fashion-Cave",
+      },
+      {
+        title: "Rendition",
+        description:
+          "The official digital presence of Rendition, the Theatre Society of LNMIIT — featuring a 3D immersive experience, enrollment system, and complete club management.",
+        technologies: ["React", "Node.js", "MongoDB", "Three.js", "Tailwind CSS", "Framer Motion"],
+        link: "https://github.com/Devharsh01/Rendition-Website",
+      },
+      {
+        title: "High-Resolution Image Generation using Stable Diffusion",
+        description:
+          "Implemented Diffusion and Latent Diffusion Models achieving 4x super-resolution on satellite imagery, outperforming GANs while preserving structural integrity.",
+        technologies: ["Python", "PyTorch", "TensorFlow", "Stable Diffusion", "Hugging Face", "GANs"],
+        link: "https://github.com/Devharsh01/",
       },
     ],
     experience: [
       {
-        title: "Full-Stack Engineer",
-        company: "Lazarus Network Inc.",
-        period: "Feb 2024 - Feb 2025",
+        title: "Software Engineer Intern",
+        company: "Flexport",
+        period: "Jan 2026 - Jun 2026",
         description:
-          "Developed frontend with Next.js and React.js, backend with Node.js. Managed AWS EC2 and Google Cloud servers. Added multichain support to Erebrus and developed Netsepio frontend.",
+          "Architected and delivered a highly scalable PWA with automation frameworks and tests, driving 480+ daily scans and cutting non-compliance resolution time by 50%. Resolved a device security vulnerability with an HMAC signed-token auth flow, optimized cloud infra with Terraform (USD 900+/month savings), and integrated Slack/PagerDuty on-call alerting.",
+      },
+      {
+        title: "Product Engineer Summer Intern",
+        company: "Deloitte",
+        period: "May 2025 - Jul 2025",
+        description:
+          "Built a scalable full-stack Performance Management System for employee goal tracking and role-based workflows. Designed automated backend test suites (Node.js, Express.js, PostgreSQL) ensuring secure REST API communication, collaborating with engineers, PMs, and UX experts.",
       },
     ],
     education: [
       {
-        title: "BE Computer Engineering",
-        institution: "AISSMS COE, Pune",
-        period: "2020 - 2024",
-        description: "Bachelor's degree in Computer Engineering",
-      },
-      {
-        title: "12th Grade",
-        institution: "DR. M.K. UMATHE COLLEGE, Nagpur",
-        period: "2019 - 2020",
-        description: "Higher secondary education",
-      },
-      {
-        title: "10th Grade",
-        institution: "SCHOOL OF SCHOLARS, Nagpur",
-        period: "2017 - 2018",
-        description: "Secondary education",
+        title: "B.Tech in Computer Science and Engineering",
+        institution: "The LNM Institute of Information Technology, Jaipur",
+        period: "Oct 2022 - May 2026",
+        description: "CGPA: 7.86",
       },
     ],
     contact: {
-      email: "rushikeshnimkar396@gmail.com",
-      phone: "+919322675715",
-      location: "Nagpur",
-      linkedin: "https://www.linkedin.com/in/rushikesh-nimkar-0961361ba/",
-      github: "https://github.com/Rushikeshnimkar",
-      portfolio: "https://rushikeshnimkar.xyz/",
+      email: EMAIL,
+      phone: PHONE_DISPLAY,
+      location: "India",
+      linkedin: LINKEDIN_URL,
+      github: GITHUB_URL,
+      portfolio: PORTFOLIO_URL,
     },
     awards: [
       {
-        title: "Solana Radar Hackathon 2024",
+        title: "LeetCode Knight Badge (Rating: 1874)",
         description:
-          "Achieved 4th place out of 200+ global teams, demonstrating expertise in blockchain technology and innovative problem-solving.",
+          "Earned the Knight badge through a self-motivated approach to consistent problem-solving, algorithmic optimization, and analytical thinking.",
       },
       {
-        title: "Sui Overflow 2024",
+        title: "Coordinator of Rendition (Theatre Club of LNMIIT)",
         description:
-          "Awarded the Community Favorite Award for Mystic Tarot, an innovative Web3 tarot reading platform on the Sui Network.",
+          "Directed 7 event teams, driving a 25% growth in sponsorship revenue and improving overall attendee satisfaction.",
       },
     ],
     links: [
       {
         title: "Portfolio Website",
-        url: "https://rushikeshnimkar.xyz",
+        url: PORTFOLIO_URL,
         description: "My personal portfolio showcasing projects and skills",
       },
       {
         title: "Resume",
-        url: "https://rushikeshnimkar.xyz/resume",
+        url: RESUME_URL,
         description: "View my detailed resume",
       },
       {
         title: "GitHub Profile",
-        url: "https://github.com/Rushikeshnimkar",
+        url: GITHUB_URL,
         description: "Check out my code repositories and contributions",
       },
       {
         title: "LinkedIn",
-        url: "https://www.linkedin.com/in/rushikesh-nimkar-0961361ba/",
+        url: LINKEDIN_URL,
         description: "Connect with me professionally",
       },
       {
-        title: "Gitsplit Project",
-        url: "https://ethglobal.com/showcase/gitsplit-pkp5d",
-        description: "Funding platform for open-source projects",
+        title: "LeetCode",
+        url: LEETCODE_URL,
+        description: "Knight badge holder (Rating: 1874)",
       },
       {
-        title: "Cryptorage Project",
-        url: "https://dorahacks.io/buidl/16435",
-        description: "Chrome extension for secure data storage",
+        title: "Fashion Cave",
+        url: "https://github.com/Devharsh01/Fashion-Cave",
+        description: "Full-stack fashion e-commerce platform",
       },
       {
-        title: "Terminal AI Assistant",
-        url: "https://www.npmjs.com/package/terminal-ai-assistant",
-        description: "CLI tool for natural language command conversion",
+        title: "Rendition Website",
+        url: "https://github.com/Devharsh01/Rendition-Website",
+        description: "Theatre society website with a 3D immersive experience",
       },
     ],
   };
@@ -645,11 +718,13 @@ export async function POST(req: Request) {
   console.log("Authenticated user:", userPayload);
 
   try {
+    const text = await new Response(req.body).text();
+    const body = text ? JSON.parse(text) : {};
     const {
       prompt,
       messages: chatHistory,
       sessionId,
-    } = (await req.json()) as {
+    } = body as {
       prompt: string;
       messages: ChatMessage[];
       sessionId?: string;
@@ -685,7 +760,7 @@ export async function POST(req: Request) {
         let characterInfo = characterContent;
 
         // Modify system prompt based on whether structured data will be added
-        let systemContent = `You are Rushikesh Nimkar, a full-stack developer with expertise in Java, React.js, Next.js, and MySQL.`;
+        let systemContent = `You are Dev Harsh Agarwal, a Full Stack Engineer with expertise in TypeScript, Node.js, React.js, Next.js, and AWS.`;
 
         if (willHaveStructuredData) {
           // For queries that will have structured data, instruct the model to be brief
@@ -729,7 +804,7 @@ export async function POST(req: Request) {
         }
 
         systemContent += `\n\nRules:
-        1. Speak as Rushikesh using "I" and "my"
+        1. Speak as Dev Harsh using "I" and "my"
         2. Keep responses concise and focused
         3. If unsure about specific details, say "Feel free to contact me directly for more information"
         4. Use web search results when provided for up-to-date information

@@ -13,6 +13,16 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import { SiDevdotto } from "react-icons/si";
+import { PORTFOLIO_URL } from "@/constants/site";
+
+// Hostname of the portfolio, derived from the single source of truth
+const PORTFOLIO_HOST = (() => {
+  try {
+    return new URL(PORTFOLIO_URL).hostname;
+  } catch {
+    return PORTFOLIO_URL;
+  }
+})();
 
 export interface Link {
   title: string;
@@ -78,7 +88,7 @@ export const LinkCard: React.FC<LinkCardProps> = ({ links }) => {
     // Try to extract domain for domain-specific checks
     try {
       const domain = extractDomain(url);
-      if (domain.includes("rushikeshnimkar.xyz")) return "portfolio";
+      if (domain.includes(PORTFOLIO_HOST)) return "portfolio";
     } catch (error) {
       // If domain extraction fails, continue with other checks
       console.error("Error extracting domain:", error);
@@ -146,7 +156,7 @@ export const LinkCard: React.FC<LinkCardProps> = ({ links }) => {
         url.includes("github.com") ||
         url.includes("linkedin.com") ||
         url.includes("resume") ||
-        url.includes("rushikeshnimkar.xyz")
+        url.includes(PORTFOLIO_HOST)
       ) {
         groups["Profile"].push(link);
       } else if (

@@ -16,6 +16,7 @@ import AnimatedTitle from "../animations/AnimatedTitle";
 import AnimatedWords2 from "../animations/AnimatedWords2";
 import Link from "next/link";
 import Alert from "@/components/ui/alert";
+import { GITHUB_URL, LINKEDIN_URL, LEETCODE_URL, WHATSAPP_URL } from "@/constants/site";
 
 // Add this interface after the imports and before the component
 interface EmailMessage {
@@ -173,7 +174,7 @@ export default function Contact() {
                   className={"text-[#e4ded7]/60"}
                 />
                 <Link
-                  href="https://wa.me/919456658136"
+                  href={WHATSAPP_URL}
                   target="_blank"
                   aria-label="Book a call"
                   className="underline underline-offset-4 hover:no-underline transition-all duration-300 hover:text-[#e4ded7]/80"
@@ -189,7 +190,7 @@ export default function Contact() {
             {/* Social Links */}
             <div className="flex items-center justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#e4ded7]">
               <Link
-                href="https://github.com/Devharsh01"
+                href={GITHUB_URL}
                 target="_blank"
                 aria-label="View GitHub Profile"
                 className="hover:text-[#e4ded7]/70 transition-all duration-300 transform hover:scale-110"
@@ -204,7 +205,7 @@ export default function Contact() {
                 />
               </Link>
               <Link
-                href="https://www.linkedin.com/in/dev-harsh-agarwal-31351724a/"
+                href={LINKEDIN_URL}
                 target="_blank"
                 aria-label="View LinkedIn Profile"
                 className="hover:text-[#e4ded7]/70 transition-all duration-300 transform hover:scale-110"
@@ -219,7 +220,7 @@ export default function Contact() {
                 />
               </Link>
               <Link
-                href="https://leetcode.com/u/Dev_Harsh01/"
+                href={LEETCODE_URL}
                 target="_blank"
                 aria-label="View LeetCode Profile"
                 className="hover:text-[#e4ded7]/70 transition-all duration-300 transform hover:scale-110"
@@ -234,7 +235,7 @@ export default function Contact() {
                 />
               </Link>
               {/* <Link
-                href="https://www.instagram.com/victorwill__/"
+                href="https://www.instagram.com/dev_harsh01/"
                 target="_blank"
                 aria-label="View Instagram Profile"
                 className="hover:text-[#e4ded7]/70 transition-all duration-300 transform hover:scale-110"
@@ -249,7 +250,7 @@ export default function Contact() {
                 />
               </Link>
               <Link
-                href="https://blog.victorwilliams.me/"
+                href="https://devharsh.xyz/blog"
                 target="_blank"
                 aria-label="View Hashnode Profile"
                 className="hover:text-[#e4ded7]/70 transition-all duration-300 transform hover:scale-110"

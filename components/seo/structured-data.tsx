@@ -1,3 +1,5 @@
+import { NAME, ROLE, PORTFOLIO_URL, GITHUB_URL, LINKEDIN_URL, LEETCODE_URL } from "@/constants/site";
+
 export function PersonSchema() {
   return (
     <script
@@ -6,19 +8,15 @@ export function PersonSchema() {
         __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Person",
-          name: "Rushikesh Nimkar",
-          url: "https://rushikeshnimkar.com",
-          sameAs: [
-            "https://github.com/Rushikeshnimkar",
-            "https://www.linkedin.com/in/rushikesh-nimkar-0961361ba/",
-            "https://x.com/RushikeshN22296"
-          ],
-          jobTitle: "Full Stack Developer",
-          knowsAbout: ["Web Development", "Blockchain", "TypeScript", "React", "Next.js"],
-          image: "/profile.jpg",
-          description: "Full Stack Developer specializing in Next.js, TypeScript, and Blockchain development."
+          name: NAME,
+          url: PORTFOLIO_URL,
+          sameAs: [GITHUB_URL, LINKEDIN_URL, LEETCODE_URL],
+          jobTitle: ROLE,
+          knowsAbout: ["Web Development", "Cloud", "TypeScript", "React", "Next.js", "AWS"],
+          image: "/profile1.jpeg",
+          description: "Full Stack Engineer specializing in TypeScript, React, Next.js, Node.js, and AWS."
         })
       }}
     />
   );
-} 
+}

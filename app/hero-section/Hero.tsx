@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { imageAnimation, bodyAnimation } from "../animations/animations";
 import AnimatedWords from "../animations/AnimatedWords";
 import profile from "../../public/profile1.jpeg";
+import { GITHUB_URL, LINKEDIN_URL, LEETCODE_URL, WHATSAPP_URL } from "@/constants/site";
 
 const Hero = () => {
   return (
@@ -19,7 +20,7 @@ const Hero = () => {
       <div className="absolute top-10 flex justify-between sm:w-[90%] lg:max-w-[1440px]">
         <div>
           <Link
-            href="https://wa.me/919456658136"
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
@@ -35,7 +36,7 @@ const Hero = () => {
 
         <div className="flex gap-10 text-[#e4ded7] sm:gap-12 md:gap-14 lg:gap-14">
           <Link
-            href="https://github.com/Devharsh01"
+            href={GITHUB_URL}
             target="_blank"
             aria-label="View GitHub Profile"
             data-blobity-tooltip="GitHub"
@@ -49,7 +50,7 @@ const Hero = () => {
             </motion.p>
           </Link>
           <Link
-            href="https://www.linkedin.com/in/dev-harsh-agarwal-31351724a/"
+            href={LINKEDIN_URL}
             target="_blank"
             aria-label="View LinkedIn Profile"
             data-blobity-tooltip="LinkedIn"
@@ -63,9 +64,9 @@ const Hero = () => {
             </motion.p>
           </Link>
           <Link
-            href="https://leetcode.com/u/Dev_Harsh01/"
+            href={LEETCODE_URL}
             target="_blank"
-            aria-label="View Twitter Profile"
+            aria-label="View LeetCode Profile"
             data-blobity-tooltip="LeetCode"
             data-blobity-magnetic="false"
           >
@@ -94,7 +95,7 @@ const Hero = () => {
             <Image
               src={profile}
               priority
-              alt="Victor's headshot"
+              alt="Dev Harsh's headshot"
               data-blobity-tooltip="Dev Harsh"
               data-blobity-invert="false"
               className=" w-[150px] rounded-[16px] grayscale hover:grayscale-0 md:w-[200px] md:rounded-[32px] lg:w-[245px]"

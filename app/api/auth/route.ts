@@ -1,11 +1,13 @@
 // Create this file at: app/api/auth/route.ts
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { generateToken } from "../chat/route"; // Import the generateToken function
 import { headers } from "next/headers";
+import { PORTFOLIO_URL } from "@/constants/site";
 
 // Function to check if origin is allowed (same as in your chat route)
 function isAllowedOrigin(origin: string | null) {
   const allowedOrigins = [
+    PORTFOLIO_URL, // production
     "http://localhost:3000", // for development
   ];
   return origin && allowedOrigins.includes(origin);
@@ -30,7 +32,8 @@ export async function POST(req: Request) {
       );
     }
 
-    const body = await req.json();
+    const text = await new Response(req.body).text();
+    const body = text ? JSON.parse(text) : {};
     const { type = "anonymous" } = body;
 
     // Create payload for the token

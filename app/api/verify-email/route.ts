@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json();
+    const text = await new Response(req.body).text();
+    const body = text ? JSON.parse(text) : {};
+    const { email } = body;
 
     const response = await fetch(
       `https://emailvalidation.abstractapi.com/v1/?api_key=${process.env.ABSTRACT_API_KEY}&email=${email}`,

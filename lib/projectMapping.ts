@@ -4,7 +4,11 @@ export const projectSlugMapping: Record<string, string> = {
   'interlock': 'interlock', 
   'synthetix': 'synthetix',
   'propellent': 'propellent',
-  'flixify': 'flixify'
+  'flixify': 'flixify',
+  'fashion-cave': 'fashion-cave',
+  'rendition': 'rendition',
+  'patient-management-system': 'patient-management-system',
+  'exec-os': 'exec-os'
 };
 
 // Function to get MDX filename from project slug

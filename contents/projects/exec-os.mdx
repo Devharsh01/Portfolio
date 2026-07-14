@@ -1,0 +1,47 @@
+---
+title: 'Exec OS: Autonomous AI Agent SaaS'
+description: 'A full-stack autonomous AI "Executive Assistant" SaaS that runs background tasks autonomously, processes Gmail/Calendar data, features a heartbeat mechanism via Cron, and reasoning logs transparency.'
+category: 'Artificial Intelligence'
+publishedAt: '2026-07-01'
+techs: 'Next.js 15,React 19,TypeScript,Vercel AI SDK,Claude API,Drizzle ORM,PostgreSQL'
+banner: ''
+link: ''
+github: 'https://github.com/Devharsh01/Exec-OS'
+---
+
+> ## Short Explanation
+
+Exec OS is a full-stack autonomous AI "Executive Assistant" designed to manage administrative tasks without manual user intervention. Built using Next.js 15, React 19, and the Vercel AI SDK, it utilizes a heartbeat cron mechanism to autonomously run multi-step workflows. The system integrates with Gmail and Google Calendar via OAuth 2.0 to draft replies, schedule events, detect schedule conflicts, and persist encrypted session data alongside real-time AI reasoning logs.
+
+> ## Project Goals
+
+- **100% Autonomous Execution**: Implement a background heartbeat driver to trigger routine assistant workflows without user presence.
+- **Natural Integrations**: Link with Google Workspace services securely to perform action loops on behalf of the user.
+- **Scale and Consistency**: Persist encrypted sessions and logging trails securely with high transactional data safety.
+- **AI Transparency**: Expose the LLM's raw reasoning chain and thoughts for total user auditability.
+
+<blockquote className='with-icons'>
+  ## Tech Stack Used
+  <div className='not-prose mt-2'>
+    <TechIcons techs={['nextjs', 'react', 'typescript', 'vercel-ai-sdk', 'claude-api', 'postgresql', 'drizzle']} />
+  </div>
+</blockquote>
+
+- **Frameworks**: Next.js 15, React 19, TypeScript.
+- **AI Integrations**: Vercel AI SDK, Anthropic Claude API.
+- **Database & ORM**: PostgreSQL database, Drizzle ORM.
+- **Security & OAuth**: OAuth 2.0 for secure Google API authorizations, AES-256 for token encryptions.
+
+> ## Features
+
+### Autonomous Operations
+- **Heartbeat Driver**: Built a recurring cron heartbeat triggering background checks every 15 minutes to run queue checks autonomously.
+- **Zero-Touch Execution**: Completes inbox evaluations, drafts, and calendar updates without requiring active page sessions.
+
+### Google API Workflows
+- **Gmail Automation**: Reads, categories, and drafts replies to business emails, cutting inbox management overhead by 40%.
+- **Calendar Conflict Detection**: Parses schedules, suggests alternate spots, and updates meetings via safe OAuth integrations.
+
+### Scalable Persistence & Logs
+- **Drizzle ORM & PostgreSQL**: Designed schema queries for storing credential variables and event logs.
+- **Reasoning Log Stream**: Displays step-by-step assistant logic outputs, explaining why actions are proposed or executed.

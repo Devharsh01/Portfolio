@@ -1,15 +1,17 @@
 import { NextResponse, NextRequest } from "next/server";
 import { applyCors, corsMiddleware } from "@/lib/cors";
+import { PORTFOLIO_URL } from "@/constants/site";
 
 // Set a longer timeout for the API route
 export const config = {
   runtime: "edge",
   regions: ["iad1"],
 };
-
 async function handler(req: NextRequest) {
   try {
-    const { prompt } = await req.json();
+    const text = await new Response(req.body).text();
+    const body = text ? JSON.parse(text) : {};
+    const { prompt } = body;
 
     // System prompt for email generation
     const systemPrompt = `You are an AI email assistant. Generate a professional email based on the following prompt. 
@@ -42,12 +44,12 @@ async function handler(req: NextRequest) {
         headers: {
           // Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`, 
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`, 
-          "HTTP-Referer": "https://rushikeshnimkar.xyz",
-          "X-Title": "Rushikesh's Portfolio",
+          "HTTP-Referer": PORTFOLIO_URL,
+          "X-Title": "Dev Harsh's Portfolio",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "nousresearch/deephermes-3-llama-3-8b-preview:free",
+          model: "meta-llama/llama-3.1-8b-instruct",
           messages: messages,
           max_tokens: 10000, // Limit response size
           temperature: 0.2, // Add temperature for more consistent responses

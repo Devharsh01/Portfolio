@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { RESUME_URL } from "@/constants/site";
 
 const NavBar = () => {
   const pathname = usePathname();
@@ -28,7 +29,7 @@ const NavBar = () => {
         : "w-[200px] sm:w-[240px] lg:w-[260px]"
     }`}>
       <Link
-        href="https://drive.google.com/file/d/1b0CjjDs-t31yd9NwX66ta2Zdj-1FSdCs/view?usp=sharing"
+        href={RESUME_URL}
         target="_blank"
         className="flex"
         aria-label="Open my resume"

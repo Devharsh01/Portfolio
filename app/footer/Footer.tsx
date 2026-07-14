@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import AnimatedBody from "../animations/AnimatedBody";
+import { NAME, GITHUB_URL } from "@/constants/site";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -19,12 +20,12 @@ const Footer = () => {
             className={"m-0 p-0"}
           />
           <Link
-            href="https://github.com/Devharsh01"
+            href={GITHUB_URL}
             target="_blank"
             aria-label="Dev Harsh's GitHub Profile"
           >
             <span className="underline underline-offset-2 hover:no-underline">
-              <AnimatedBody text={"Dev Harsh Agarwal"} className={"m-0 p-0"} />
+              <AnimatedBody text={NAME} className={"m-0 p-0"} />
             </span>{" "}
           </Link>
         </div>

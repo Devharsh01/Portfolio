@@ -108,7 +108,7 @@ Provides the visual interface components for the chat system with rich animation
 #### A. ChatHeader
 - **Branding**: Displays AI assistant identity and capabilities
 - **Close Control**: Provides modal dismissal functionality
-- **Status Display**: Shows "Powered by Kimi k2 & Web Search"
+- **Status Display**: Shows "Powered by Mistral & Web Search"
 
 #### B. MessageDisplay
 - **Message Rendering**: Displays chat history with role-based styling
@@ -327,7 +327,7 @@ POST /api/theme
 
 ### Environment Configuration
 - JWT secret key for token generation
-- AI service API credentials (Kimi k2)
+- AI service API credentials (Mistral)
 - Web search service integration
 - CORS configuration for frontend-backend communication
 

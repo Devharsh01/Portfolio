@@ -1,3 +1,5 @@
+import { NAME, ROLE, PORTFOLIO_URL } from "@/constants/site";
+
 export function ProfileImagesSchema() {
   return (
     <script
@@ -8,31 +10,31 @@ export function ProfileImagesSchema() {
           "@type": "ImageGallery",
           mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": "https://rushikeshnimkar.com",
+            "@id": PORTFOLIO_URL,
           },
           about: {
             "@type": "Person",
-            name: "Rushikesh Nimkar",
+            name: NAME,
             description:
-              "Full Stack Developer specializing in Next.js, TypeScript, and Blockchain development.",
+              `${ROLE} specializing in TypeScript, React, Next.js, Node.js, and AWS.`,
           },
           associatedMedia: [
             {
               "@type": "ImageObject",
-              contentUrl: "https://rushikeshnimkar.com/rushikesh_nimkar.jpg",
-              name: "Rushikesh Nimkar - Full Stack Developer Primary Profile",
+              contentUrl: `${PORTFOLIO_URL}/profile1.jpeg`,
+              name: "Dev Harsh Agarwal - Full Stack Engineer Primary Profile",
               description:
-                "Primary profile photo of Rushikesh Nimkar, Full Stack Developer",
+                "Primary profile photo of Dev Harsh Agarwal, Full Stack Engineer",
               encodingFormat: "image/jpeg",
               width: "800",
               height: "800",
             },
             {
               "@type": "ImageObject",
-              contentUrl: "https://rushikeshnimkar.com/profile.jpg",
-              name: "Rushikesh Nimkar - Full Stack Developer Alternate Profile",
+              contentUrl: `${PORTFOLIO_URL}/profile.jpeg`,
+              name: "Dev Harsh Agarwal - Full Stack Engineer Alternate Profile",
               description:
-                "Secondary profile photo of Rushikesh Nimkar, showcasing professional appearance",
+                "Secondary profile photo of Dev Harsh Agarwal, showcasing professional appearance",
               encodingFormat: "image/jpeg",
               width: "800",
               height: "800",

@@ -6,6 +6,11 @@ import { Analytics } from "@vercel/analytics/react";
 import "../lib/fontawesome";
 import { NavigationProvider } from "./contexts/NavigationContext";
 import { BlobityProvider } from "./contexts/BlobityProvider";
+import { NAME, ROLE, PORTFOLIO_URL } from "@/constants/site";
+
+const TITLE = `${NAME} — ${ROLE}`;
+const DESCRIPTION =
+  "Full Stack Engineer building scalable web and cloud systems with TypeScript, React, Next.js, Node.js, and AWS. Software Engineer Intern at Flexport, working from India.";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -14,43 +19,42 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Dev Harsh Agarwal — Full Stack Engineer",
-  description:
-    "Frontend Engineer and Web Designer, currently at Kora. Focused on interfaces and experiences, working remotely from Lagos, Nigeria.",
+  title: TITLE,
+  description: DESCRIPTION,
   generator: "Next.js",
-  applicationName: "Victor Williams",
+  applicationName: NAME,
   keywords: [
-    "freelance",
+    "Dev Harsh Agarwal",
     "developer",
-    "freelance developer",
+    "full stack developer",
+    "full stack engineer",
     "frontend",
+    "backend",
     "react",
-    "frontend developer",
-    "frontend engineer",
-    "creative",
-    "creative developer",
-    "creative engineer",
-    "tech",
-    "nigeria",
+    "next.js",
+    "node.js",
+    "typescript",
+    "aws",
+    "cloud",
     "software",
-    "software developer",
+    "software engineer",
+    "india",
     "portfolio",
-    "frontend developer portfolio",
-    "creative developer portfolio",
+    "full stack developer portfolio",
+    "software engineer portfolio",
   ],
   colorScheme: "dark",
   openGraph: {
-    title: "Dev Harsh Agarwal — Full Stack Engineer",
-    description:
-      "Frontend Engineer and Web Designer, currently at Kora. Focused on interfaces and experiences, working remotely from Lagos, Nigeria.",
-    url: "https://www.victorwilliams.me/",
-    siteName: "www.victorwilliams.me",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: PORTFOLIO_URL,
+    siteName: NAME,
     images: [
       {
         url: "https://user-images.githubusercontent.com/84178696/228620835-e3cc5c9b-72fc-4f54-a628-407ef7b650f5.png",
         width: 1200,
         height: 630,
-        alt: "Dev Harsh Agarwal — Full Stack Engineer",
+        alt: TITLE,
       },
     ],
     locale: "en-US",
@@ -58,10 +62,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dev Harsh Agarwal — Full Stack Engineer",
-    description:
-      "Frontend Engineer and Web Designer, currently at Kora. Focused on interfaces and experiences, working remotely from Lagos, Nigeria.",
-    creator: "victorwill__",
+    title: TITLE,
+    description: DESCRIPTION,
+    creator: "Dev_Harsh01",
     images: [
       "https://user-images.githubusercontent.com/84178696/228620835-e3cc5c9b-72fc-4f54-a628-407ef7b650f5.png",
     ],

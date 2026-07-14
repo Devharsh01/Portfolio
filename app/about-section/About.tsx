@@ -52,13 +52,13 @@ const About = () => {
               />
               <AnimatedBody
                 text={
-                  "C, Python, Java, HTML, CSS, JavaScript, TypeScript."
+                  "Java, C++, JavaScript, TypeScript, Python, SQL."
                 }
               />
             </div>
             <div className="flex flex-col gap-3">
               <AnimatedTitle
-                text={"Web Development"}
+                text={"Frameworks & Technologies"}
                 className={
                   "text-[24px] text-[#e4ded7] md:text-[30px] lg:text-[20px]"
                 }
@@ -67,13 +67,13 @@ const About = () => {
               />
               <AnimatedBody
                 text={
-                  "React.js, Express.js, Next.js, TailwindCSS, Node.js, REST APIs."
+                  "Spring Boot, Node.js, Express.js, React.js, Next.js, REST APIs."
                 }
               />
             </div>
             <div className="flex flex-col gap-3">
               <AnimatedTitle
-                text={"Database Management"}
+                text={"Databases"}
                 className={
                   "text-[24px] text-[#e4ded7] md:text-[30px] lg:text-[20px]"
                 }
@@ -82,13 +82,13 @@ const About = () => {
               />
               <AnimatedBody
                 text={
-                  "MySQL, PostgreSQL, NoSQL, MongoDB, Database Design."
+                  "PostgreSQL, MySQL, MongoDB, DynamoDB, Snowflake."
                 }
               />
             </div>
             <div className="flex flex-col gap-3">
               <AnimatedTitle
-                text={"Developer Tools & OS"}
+                text={"Cloud & DevOps"}
                 className={
                   "text-[24px] text-[#e4ded7] md:text-[30px] lg:text-[20px]"
                 }
@@ -97,13 +97,13 @@ const About = () => {
               />
               <AnimatedBody
                 text={
-                  "Git, VS Code, Google Colab, Linux, Postman, Jupyter Notebooks."
+                  "AWS (Lambda, API Gateway, S3, SQS, SNS, RDS), Terraform, Docker, Kafka, Git, GitHub Actions, CI/CD."
                 }
               />
             </div>
             <div className="flex flex-col gap-3">
               <AnimatedTitle
-                text={"Data Science & AI"}
+                text={"Core Competencies"}
                 className={
                   "text-[24px] text-[#e4ded7] md:text-[30px] lg:text-[20px]"
                 }
@@ -112,7 +112,7 @@ const About = () => {
               />
               <AnimatedBody
                 text={
-                  "Machine Learning, Data Analysis, Pandas, NumPy, Scikit-learn, TensorFlow, Data Visualization."
+                  "Distributed Systems, System Design, Data Structures & Algorithms, Scalable Backend Systems, Object-Oriented Programming, Unit & Integration Testing, Microservices."
                 }
               />
             </div>

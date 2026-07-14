@@ -1,6 +1,7 @@
 "use client";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { NAME, GITHUB_URL, LINKEDIN_URL } from "@/constants/site";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,7 +13,7 @@ export function Footer() {
           {/* Social Links */}
           <div className="flex space-x-6">
             <a
-              href="https://github.com/Rushikeshnimkar"
+              href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-neutral-400 hover:text-blue-500 transition-colors"
@@ -21,7 +22,7 @@ export function Footer() {
               <FaGithub size={20} />
             </a>
             <a
-              href="https://www.linkedin.com/in/rushikesh-nimkar-0961361ba/"
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-neutral-400 hover:text-blue-500 transition-colors"
@@ -30,7 +31,7 @@ export function Footer() {
               <FaLinkedin size={20} />
             </a>
             <a
-              href="https://twitter.com/RushikeshNimkar"
+              href="https://twitter.com/Dev_Harsh01"
               target="_blank"
               rel="noopener noreferrer"
               className="text-neutral-400 hover:text-blue-500 transition-colors"
@@ -42,7 +43,7 @@ export function Footer() {
 
           {/* Copyright */}
           <div className="text-neutral-500 text-sm">
-            <p>© {currentYear} Rushikesh Nimkar</p>
+            <p>© {currentYear} {NAME}</p>
           </div>
         </div>
       </div>

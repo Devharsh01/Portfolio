@@ -108,11 +108,12 @@ export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
     }
   }, [isOpen]);
 
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     initializeChat(setMessages, setError);
-  //   }
-  // }, [isOpen, setMessages, setError]);
+  // Show a welcome message the first time the chat is opened in this session
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
+      initializeChat(setMessages, setError);
+    }
+  }, [isOpen, messages.length, setMessages, setError]);
 
   // Function to clear chat and start new conversation
   const handleClearChat = () => {
@@ -251,21 +252,6 @@ export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
 
   return (
     <>
-      {/* Chat button with ref to capture position */}
-      <button
-        ref={chatButtonRef}
-        onClick={() => {
-          captureButtonPosition();
-          // Your existing open chat logic
-          setShowClickbait(false);
-          setHasInteracted(true);
-          localStorage.setItem("hasInteractedWithAI", "true");
-        }}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-br from-[#e4ded7]/90 to-[#e4ded7]/70 backdrop-blur-sm flex items-center justify-center shadow-lg hover:shadow-2xl hover:shadow-[#e4ded7]/20 transition-all duration-500 hover:scale-110 hover:rotate-12 z-40 border border-[#e4ded7]/30"
-      >
-        <RobotIcon className="w-7 h-7 text-[#0E1016]" />
-      </button>
-
       {/* Clickbait prompt */}
       <AnimatePresence>
         {showClickbait && !isOpen && !hasInteracted && (

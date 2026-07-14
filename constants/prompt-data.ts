@@ -34,9 +34,9 @@ export const predefinedPrompts: PredefinedPrompt[] = [
     category: "info",
   },
   {
-    icon: "💰",
+    icon: "🏆",
     prefix: "",
-    prompt: "what was price pool of Sui overflow hackathon?",
+    prompt: "What is your LeetCode rating?",
     category: "info",
   },
   {

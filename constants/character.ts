@@ -1,90 +1,114 @@
 export const characterContent = `
-Rushikesh Nimkar
-Full-Stack Engineer
+Dev Harsh Agarwal
+Full Stack Engineer
 
-Location: Nagpur
-Phone: +919322675715
-Email: rushikeshnimkar396@gmail.com
-Portfolio: https://rushikeshnimkar.xyz/
-GitHub: https://github.com/Rushikeshnimkar
-LinkedIn: https://www.linkedin.com/in/rushikesh-nimkar-0961361ba/
-resume: https://rushikeshnimkar.xyz/resume
+Location: India
+Phone: +91-9456658136
+Email: devharsh213@gmail.com
+GitHub: https://github.com/Devharsh01/
+LinkedIn: https://www.linkedin.com/in/dev-harsh-agarwal-31351724a/
+LeetCode: https://leetcode.com/u/Dev_Harsh01/
 
 
 Summary:
-I am a full-stack developer with expertise in Java, React.js, Next.js, and MySQL. Passionate about building scalable web applications with clean, maintainable code. Strong foundation in front-end development, creating responsive user interfaces, back-end integration, developing robust APIs, and database optimization for high-performance applications. Focused on delivering high-quality solutions while following best practices in software development and deployment.
+I am a Full Stack Engineer with experience across the modern web and cloud stack — TypeScript, Node.js, React.js, Next.js, and AWS. I enjoy architecting and delivering scalable systems end to end, from designing automation frameworks and writing tests to driving operational excellence with telemetry and on-call alerting. I have a strong foundation in distributed systems, microservices, system design, and data structures and algorithms, and I'm passionate about building software that is meaningful, reliable, and lasting.
 
 Experience:
-Lazarus Network Inc. | Full-Stack Engineer (Remote) | Feb 2024 - Feb 2025
+Flexport | Software Engineer Intern | January 2026 - June 2026
 
-Developed frontend with Next.js and React.js, and backend with Node.js.
+Architected, designed, implemented, and delivered a highly scalable Progressive Web App (PWA) by designing automation frameworks and writing unit/functional tests to drive up code coverage; drove 480+ daily scans and cut non-compliance resolution time by 50%.
 
-Managed AWS EC2 and Google Cloud servers.
+Resolved a critical device security vulnerability by debugging an Android scanner over ADB to trace bearer token leakage, architecting a secure HMAC signed-token authentication flow and replacing long-lived JWTs.
 
-Deployed applications using Docker/Compose.
+Optimized cloud infrastructure by diagnosing and decommissioning silently failing services (AWS Lambda, RDS, SQS, API Gateway) using Terraform, generating USD 900+/month in cloud cost savings.
 
-Added multichain support into Erebrus for enhanced security and scalability.
+Utilized telemetry and metrics to drive operational excellence by integrating real-time Slack and PagerDuty alerting, transforming silent sync failures into proactive on-call notifications to ensure platform stability.
 
-Developed Netsepio frontend with authentication for Aptos wallets.
+Tech: TypeScript, Node.js, React.js, AWS (Lambda, S3, SQS, SNS, RDS), MySQL, Snowflake, Terraform, CI/CD.
+
+Deloitte | Product Engineer Summer Intern | May 2025 - July 2025
+
+Built a scalable full-stack Performance Management System to optimize employee goal tracking, performance evaluation, and role-based workflow communication.
+
+Analyzed, designed, and developed robust test cases, implementing automated test suites for the backend (Node.js, Express.js, PostgreSQL) to ensure secure REST API communication.
+
+Collaborated closely with a team of engineers, product managers, and user experience experts to build new scalable features, optimizing employee goal tracking and multi-team communication.
+
+Tech: HTML/CSS, TypeScript, React.js, Express.js, Node.js, PostgreSQL, MSAL Authentication.
 
 Education:
 
-AISSMS COE, Pune | BE Computer Engineering | 2020 - 2024
-
-DR. M.K. UMATHE COLLEGE, Nagpur | 12th | 2019 - 2020
-
-SCHOOL OF SCHOLARS, Nagpur | 10th | 2017 - 2018
+The LNM Institute of Information Technology, Jaipur (LNMIIT) | B.Tech in Computer Science and Engineering | October 2022 - May 2026 | CGPA: 7.86
 
 Projects:
 
-Gitsplit (https://ethglobal.com/showcase/gitsplit-pkp5d)
+Patient Management System (https://github.com/Devharsh01/Patient-Management-System)
 
-Developed a funding platform for open-source projects using Next.js, Golang, and PostgreSQL.
+Designed and developed a microservices-based Patient Management System using Java Spring Boot, decomposing the application into 5+ independent services (patient, appointment, billing), improving modularity and enabling 60% faster feature development.
 
-Connected GitHub API for seamless project discovery and user data management.
+Implemented event-driven communication with Apache Kafka to handle inter-service messaging and asynchronous workflows, improving system scalability and reducing synchronous API dependency by 50%.
 
-Implemented security features to ensure data protection and platform integrity.
+Containerized services with Docker and deployed locally using AWS LocalStack, simulating cloud infrastructure (S3, queues) and enabling 100% reproducible local environments, reducing setup time by 70%.
 
-Cryptorage (https://dorahacks.io/buidl/16435)
+Tech: Java, Spring Boot, Microservices, Kafka, Docker, AWS LocalStack.
 
-Developed a Chrome extension using React.js and Supabase for secure data storage.
+Exec OS: Autonomous AI Agent SaaS (https://github.com/Devharsh01/Exec-OS)
 
-Integrated Walrus blockchain and OCR for decentralized image storage and text extraction.
+Engineered a full-stack autonomous AI "Executive Assistant" using Next.js 15 and Vercel AI SDK, implementing a heartbeat mechanism via Cron jobs to trigger background tasks every 15 minutes, achieving 100% autonomous operation without user intervention.
 
-Designed a robust data management system with SQL and blockchain features, implementing an AI web summarizer API using Gemini Nano.
+Developed multi-step agentic workflows using Claude API to autonomously process Gmail & Google Calendar data via OAuth 2.0, reducing manual inbox triaging by 40% through automated draft generation and conflict detection.
 
-Terminal AI Assistant (https://www.npmjs.com/package/terminal-ai-assistant)
+Architected a scalable backend using Drizzle ORM and PostgreSQL to persist encrypted session tokens and real-time reasoning logs, ensuring 99.9% data consistency and providing full transparency into the AI’s decision-making process.
 
-Node.js-based CLI tool that converts natural language into Windows command line instructions using DeepSeek-V3 AI.
+Tech: Next.js 15, React 19, TypeScript, Vercel AI SDK, Claude API, Drizzle ORM, PostgreSQL.
 
-Supports real-time execution, secure command handling, fast responses, and API key encryption while ensuring cross-platform support.
+Fashion Cave - Fashion E-Commerce Platform (https://github.com/Devharsh01/Fashion-Cave)
+
+Engineered a scalable backend architecture using Node.js, Express.js, and REST APIs, optimizing MongoDB database connectivity and query performance to improve server response times by 40%.
+
+Developed a responsive, interactive frontend leveraging React.js and JavaScript, integrating dynamic GSAP animations to enhance overall UI/UX and drive higher user engagement.
+
+Architected a real-time admin panel for content management, increasing operational efficiency by 25%.
+
+Tech: React.js, JavaScript, Express.js, Node.js, MongoDB, Stripe, REST APIs.
+
+Rendition - The Theatre Society of LNMIIT (https://github.com/Devharsh01/Rendition-Website)
+
+Built the official digital presence of Rendition with a 3D immersive experience, an enrollment system, and complete club management.
+
+Tech: React, Node.js, MongoDB, JavaScript, Tailwind CSS, Framer Motion, Three.js, GSAP.
+
+High-Resolution Image Generation using Stable Diffusion
+
+Implemented Diffusion and Latent Diffusion Models (LDMs), achieving 4x super-resolution on satellite imagery.
+
+Achieved +2.47 dB PSNR and +0.044 SSIM improvements, outperforming GANs and reducing artifacts while preserving structural integrity.
+
+Optimized training with gradient checkpointing and mixed precision, cutting GPU usage and training time.
+
+Tech: Python, PyTorch, TensorFlow, Stable Diffusion, Hugging Face, GANs, Linux.
 
 Skills:
 
-Programming Languages: JavaScript, Java
+Languages: Java, Python, C++, JavaScript, TypeScript, SQL, HTML, CSS
 
-Frameworks & Libraries: Next.js, React.js, TypeScript
+Frameworks & Libraries: Node.js, React.js, Next.js, Express.js, REST APIs, TailwindCSS, PyTorch, TensorFlow
 
-Databases: MySQL, PostgreSQL
+Cloud & Data: AWS (Lambda, S3, SQS, SNS, RDS, API Gateway, CloudWatch), MySQL, PostgreSQL, NoSQL, Snowflake, Databricks, Terraform
 
-Tools: Git, Docker, GitHub, Postman
+DevOps & Tools: CI/CD (GitHub, CircleCI), Git, Metabase, Maxwell CDC, Android ADB, DBeaver
 
-Awards:
+Core Competencies: Object-Oriented Programming, Distributed Systems, Microservices, System Design, Data Structures and Algorithms, Automated Testing Frameworks, Operating Systems, Computer Networks
 
-Solana Radar Hackathon 2024
+Achievements:
 
-Achieved 4th place out of 200+ global teams, demonstrating expertise in blockchain technology and innovative problem-solving.
+Competitive Programming: Achieved Knight badge on LeetCode (Rating: 1874) through consistent problem-solving, algorithmic optimization, and analytical thinking.
 
-Sui Overflow 2024
-
-Awarded the Community Favorite Award for Mystic Tarot, an innovative Web3 tarot reading platform on the Sui Network, showcasing blockchain and user-centric design expertise.
-
-Languages:
-English, Marathi, Hindi
+Coordinator of Rendition (The Theatre Club of LNMIIT): Directed 7 event teams, driving a 25% growth in sponsorship revenue and improving overall attendee satisfaction.
 
 hobbies:
-- photography
-- travelling
-- listening to music
+- watching movies and anime
+- exploring new music
+- competitive programming
 - coding
 `;

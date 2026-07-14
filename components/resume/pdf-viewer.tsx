@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { RESUME_URL } from "@/constants/site";
 
 export default function PDFViewer() {
   const [isLoading, setIsLoading] = useState(true);
   const [iframeHeight, setIframeHeight] = useState("800px");
   const [isMobile, setIsMobile] = useState(false);
 
-  const resumePath = "/Rushikesh_Nimkar.pdf";
+  const resumePath = RESUME_URL;
 
   useEffect(() => {
     // Set a timeout to consider the PDF loaded after 2 seconds

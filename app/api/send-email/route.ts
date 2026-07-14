@@ -4,8 +4,10 @@ import { applyCors, corsMiddleware } from "@/lib/cors";
 
 async function handler(req: NextRequest) {
   try {
+    const text = await new Response(req.body).text();
+    const body = text ? JSON.parse(text) : {};
     const { content, prompt, senderName, senderEmail, subject } =
-      await req.json();
+      body;
 
     // Validate required fields
     if (!content) {

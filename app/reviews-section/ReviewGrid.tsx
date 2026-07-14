@@ -53,7 +53,7 @@ const Reviews = () => {
           amount: "some",
           once: true,
         }}
-        href="https://contra.com/victorwilliams"
+        href="https://contra.com/devharsh"
         target="_blank"
         className="mt-10 mb-5 sm:mb-0 sm:mt-20"
       >
@@ -78,7 +78,7 @@ const Reviews = () => {
         className="contra-hire-me-button mt-20"
         data-analyticsUserId="f6264c4e-279b-4675-80e8-739c55eee53f"
         data-theme="dark"
-        data-username="victorwilliams"
+        data-username="devharsh"
       ></motion.div>
       <script
         async

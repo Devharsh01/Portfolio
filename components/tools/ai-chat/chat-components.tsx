@@ -58,7 +58,7 @@ export const ChatHeader: React.FC<HeaderProps> = ({ onClose, onClearChat }) => {
         <div>
           <h3 className="font-semibold text-[#e4ded7] text-base">AI Assistant</h3>
           <p className="text-xs text-[#e4ded7]/60 mt-0.5">
-            Powered by Kimi k2 & Web Search
+            Powered by Mistral & Web Search
           </p>
         </div>
       </div>
@@ -193,7 +193,7 @@ const MessageContent: React.FC<{
   // Don't show structured content for simple questions like "who made you"
   const isBasicQuestion =
     message.type === "assistant" &&
-    message.content.toLowerCase().includes("rushikesh") &&
+    message.content.toLowerCase().includes("dev harsh") &&
     (message.content.toLowerCase().includes("created") ||
       message.content.toLowerCase().includes("made") ||
       message.content.toLowerCase().includes("developer"));

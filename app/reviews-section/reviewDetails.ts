@@ -22,7 +22,7 @@ export const reviewDetails = [
     company: "Umoja Linn",
     profileImg: alex,
     testimonial:
-      "Victor is seriously one of the best frontend developers I've ever worked with. He's incredibly talented, super easy to work with, and always goes above and beyond.",
+      "Dev Harsh is seriously one of the best frontend developers I've ever worked with. He's incredibly talented, super easy to work with, and always goes above and beyond.",
   },
   {
     name: "Jeremiah Oloyede",
@@ -30,7 +30,7 @@ export const reviewDetails = [
     company: "Crown Branding Agency",
     profileImg: jerry,
     testimonial:
-      "Victor's work is truly outstanding, and I can't recommend him enough! He completely transformed our branding agency's website. Since launch, we've seen a significant jump in website traffic and, crucially, conversions.",
+      "Dev Harsh's work is truly outstanding, and I can't recommend him enough! He completely transformed our branding agency's website. Since launch, we've seen a significant jump in website traffic and, crucially, conversions.",
   },
   {
     name: "Mauro Reis",
@@ -46,7 +46,7 @@ export const reviewDetails = [
     company: "Mono",
     profileImg: umar,
     testimonial:
-      "Victor is hardworking and has great sense of ownership. He was able to contribute in engineering excellent user interfaces and user experiences at Mono. I’m confident he will be a great asset to any engineering team.",
+      "Dev Harsh is hardworking and has great sense of ownership. He was able to contribute in engineering excellent user interfaces and user experiences at Mono. I’m confident he will be a great asset to any engineering team.",
   },
   {
     name: "Olamide Sholanke",
@@ -54,7 +54,7 @@ export const reviewDetails = [
     company: "Mono",
     profileImg: olamide,
     testimonial:
-      "I had the pleasure of working with Victor on a frontend development project at Mono, and I highly recommend him. He consistently delivered high-quality code, and brought a proactive and creative approach to problem-solving.",
+      "I had the pleasure of working with Dev Harsh on a frontend development project at Mono, and I highly recommend him. He consistently delivered high-quality code, and brought a proactive and creative approach to problem-solving.",
   },
   {
     name: "Alan Franciskovic",

@@ -1,0 +1,49 @@
+---
+title: 'Patient Management System'
+description: 'A microservices-based Patient Management System decomposing the application into 5+ independent services (patient, appointment, billing), utilizing Spring Boot, Docker, Apache Kafka for event-driven messaging, and AWS LocalStack.'
+category: 'HealthTech'
+publishedAt: '2026-06-15'
+techs: 'Java,Spring Boot,Microservices,Kafka,Docker,AWS LocalStack'
+banner: ''
+link: ''
+github: 'https://github.com/Devharsh01/Patient-Management-System'
+---
+
+> ## Short Explanation
+
+The Patient Management System is a robust microservices-based application engineered using Java and Spring Boot. The system is decomposed into 5+ independent, modular services (including Patient, Appointment, and Billing services), improving overall modularity, scalability, and developer workflow. The microservices communicate asynchronously via Apache Kafka and run inside a containerized local cloud environment simulated by Docker and AWS LocalStack.
+
+> ## Project Goals
+
+- **Modular Architecture**: Decompose healthcare workflows into independent domain microservices.
+- **Asynchronous Messaging**: Achieve low coupling and high scalability with event-driven architectures.
+- **Local Cloud Simulation**: Mirror production cloud environments locally for 100% reproducible development and testing.
+- **Improved Velocity**: Drive faster feature lifecycle development through independent deployment pipelines.
+
+<blockquote className='with-icons'>
+  ## Tech Stack Used
+  <div className='not-prose mt-2'>
+    <TechIcons techs={['java', 'spring-boot', 'kafka', 'docker', 'aws', 'localstack']} />
+  </div>
+</blockquote>
+
+- **Backend Framework**: Java, Spring Boot, Spring Cloud.
+- **Messaging Broker**: Apache Kafka for event-driven, inter-service communication.
+- **Deployment & Containers**: Docker, Docker Compose.
+- **Cloud Infrastructure Simulation**: AWS LocalStack (simulating SQS, SNS, S3, and RDS).
+
+> ## Features
+
+### Microservices Deconstruction
+- **Patient Service**: Manages patient records, histories, profiles, and basic CRUD actions.
+- **Appointment Service**: Handles calendar bookings, appointment states, rescheduling, and doctors schedule routing.
+- **Billing Service**: Processes billing histories, invoices, and charges, integrated asynchronously with appointment completions.
+
+### Communication & Scalability
+- **Event-Driven Workflows**: Replaced synchronous REST communication with Kafka message streams for asynchronous event propagation.
+- **Reduced Couplings**: Cut synchronous API dependencies by 50% using publisher-subscriber messaging patterns.
+- **Service Discovery & Gateway**: Configured service registry and API gateway for unified entry-points and load balancing.
+
+### Deployment & DevOps
+- **Containerized Dev Environment**: Dockerized all microservices to guarantee environment parity.
+- **LocalStack Integration**: Simulated AWS resources locally to achieve 100% reproducible environments and zero cloud usage billing during development.

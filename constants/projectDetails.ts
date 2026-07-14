@@ -33,5 +33,29 @@ export const devProjects = [
     demo: "https://fashion-cave-frontend.onrender.com/",
     image: require("public/projects/synthetix-flip.png"),
     available: true,
+  },
+  {
+    id: 2,
+    name: "Patient Management System",
+    description:
+      "A microservices-based Patient Management System decomposing the application into 5+ independent services (patient, appointment, billing), improving modularity and enabling 60% faster feature development.",
+    technologies: ["Java", "Spring Boot", "Microservices", "Kafka", "Docker", "AWS LocalStack"],
+    keywords: ["patient-management", "java", "spring-boot", "microservices", "kafka", "docker", "localstack", "aws", "backend", "scalable", "distributed-systems"],
+    github: "https://github.com/Devharsh01/Patient-Management-System",
+    demo: "",
+    image: require("public/projects/interlock-new-flip.png"),
+    available: true,
+  },
+  {
+    id: 3,
+    name: "Exec OS",
+    description:
+      "A full-stack autonomous AI 'Executive Assistant' SaaS that runs background tasks autonomously, processes Gmail/Calendar data via Claude API and OAuth 2.0, with Drizzle ORM and PostgreSQL.",
+    technologies: ["Next.js", "React", "TypeScript", "Vercel AI SDK", "Claude API", "Drizzle ORM", "PostgreSQL"],
+    keywords: ["exec-os", "ai-agent", "autonomous", "vercel-ai-sdk", "claude-api", "cron", "drizzle", "postgresql", "saas", "agentic-workflows"],
+    github: "https://github.com/Devharsh01/Exec-OS",
+    demo: "",
+    image: require("public/projects/propellent-new-flip.png"),
+    available: true,
   }
 ];
