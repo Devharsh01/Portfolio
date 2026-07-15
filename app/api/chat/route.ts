@@ -118,7 +118,7 @@ const LINKS_PATTERN =
 
 // Add more specific patterns for individual link types
 const RESUME_PATTERN = /resume|cv|curriculum vitae/i;
-const GITHUB_PATTERN = /github|code|repository|repositories|source code/i;
+const GITHUB_PATTERN = /\bgithub\b|\bcode\b|\brepository\b|\brepositories\b|\bsource\s+code\b/i;
 const LINKEDIN_PATTERN = /linkedin|professional profile|professional network/i;
 const LEETCODE_PATTERN = /leetcode|competitive programming|knight|rating/i;
 const PORTFOLIO_PATTERN = /portfolio website|personal website|portfolio site/i;
@@ -329,45 +329,54 @@ const CACHE_TTL = 1000 * 60 * 30; // 30 minutes
 
 // Update the generateStructuredResponse function to handle specific project types
 function generateStructuredResponse(queryType: string): string {
+  // Normalize queryType: if it contains a colon (e.g. "projects:fashion_cave"), split it.
+  let category = queryType;
+  let subset = "";
+  if (queryType.includes(":")) {
+    const parts = queryType.split(":");
+    category = parts[0];
+    subset = parts[1];
+  }
+
   // Define individual project templates
   const projectTemplates: Record<string, any> = {
-    patient_management_project: [
+    patient_management: [
       {
         title: "Patient Management System",
         description:
           "A microservices-based Patient Management System with 5+ independent services (patient, appointment, billing), utilizing Spring Boot, Docker, Apache Kafka for event-driven messaging, and AWS LocalStack.",
         technologies: ["Java", "Spring Boot", "Microservices", "Kafka", "Docker", "AWS LocalStack"],
-        link: "https://github.com/Devharsh01/Patient-Management-System",
+        link: "/projects/patient-ms",
       },
     ],
-    exec_os_project: [
+    exec_os: [
       {
         title: "Exec OS: Autonomous AI Agent SaaS",
         description:
           "A full-stack autonomous AI 'Executive Assistant' SaaS that runs background tasks autonomously, processes Gmail/Calendar data, features a heartbeat mechanism via Cron, and reasoning logs transparency.",
         technologies: ["Next.js 15", "React 19", "TypeScript", "Vercel AI SDK", "Claude API", "Drizzle ORM", "PostgreSQL"],
-        link: "https://github.com/Devharsh01/Exec-OS",
+        link: "/projects/exec-os",
       },
     ],
-    fashion_cave_project: [
+    fashion_cave: [
       {
         title: "Fashion Cave",
         description:
           "A modern, full-stack fashion e-commerce platform with a dynamic storefront, admin dashboard, and a scalable Node.js/Express backend over MongoDB.",
         technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "Stripe", "REST APIs"],
-        link: "https://github.com/Devharsh01/Fashion-Cave",
+        link: "/projects/fashion-cave",
       },
     ],
-    rendition_project: [
+    rendition: [
       {
         title: "Rendition",
         description:
           "The official digital presence of Rendition, the Theatre Society of LNMIIT — featuring a 3D immersive experience, enrollment system, and complete club management.",
         technologies: ["React", "Node.js", "MongoDB", "Three.js", "Tailwind CSS", "Framer Motion"],
-        link: "https://github.com/Devharsh01/Rendition-Website",
+        link: "/projects/rendition",
       },
     ],
-    stable_diffusion_project: [
+    stable_diffusion: [
       {
         title: "High-Resolution Image Generation using Stable Diffusion",
         description:
@@ -378,17 +387,39 @@ function generateStructuredResponse(queryType: string): string {
     ],
   };
 
+  // Define individual experience templates
+  const experienceTemplates: Record<string, any> = {
+    flexport: [
+      {
+        title: "Software Engineer Intern",
+        company: "Flexport",
+        period: "Jan 2026 - Jun 2026",
+        description:
+          "Architected and delivered a highly scalable PWA with automation frameworks and tests, driving 480+ daily scans and cutting non-compliance resolution time by 50%. Resolved a device security vulnerability with an HMAC signed-token auth flow, optimized cloud infra with Terraform (USD 900+/month savings), and integrated Slack/PagerDuty on-call alerting.",
+      },
+    ],
+    deloitte: [
+      {
+        title: "Product Engineer Summer Intern",
+        company: "Deloitte",
+        period: "May 2025 - Jul 2025",
+        description:
+          "Built a scalable full-stack Performance Management System for employee goal tracking and role-based workflows. Designed automated backend test suites (Node.js, Express.js, PostgreSQL) ensuring secure REST API communication, collaborating with engineers, PMs, and UX experts.",
+      },
+    ],
+  };
+
   // Define individual contact templates
   const contactTemplates: Record<string, any> = {
-    email_contact: {
+    email: {
       email: EMAIL,
       type: "Email",
     },
-    phone_contact: {
+    phone: {
       phone: PHONE_DISPLAY,
       type: "Phone",
     },
-    location_contact: {
+    location: {
       location: "India",
       type: "Location",
     },
@@ -396,73 +427,116 @@ function generateStructuredResponse(queryType: string): string {
 
   // Define individual link templates
   const linkTemplates: Record<string, any> = {
-    resume_link: [
+    resume: [
       {
         title: "Resume",
         url: RESUME_URL,
-        description:
-          "View my detailed resume with skills, experience, and education",
+        description: "View my detailed resume with skills, experience, and education",
       },
     ],
-    github_link: [
+    github: [
       {
         title: "GitHub Profile",
         url: GITHUB_URL,
-        description:
-          "Check out my code repositories and open-source contributions",
+        description: "Check out my code repositories and open-source contributions",
       },
     ],
-    linkedin_link: [
+    linkedin: [
       {
         title: "LinkedIn Profile",
         url: LINKEDIN_URL,
         description: "Connect with me professionally on LinkedIn",
       },
     ],
-    leetcode_link: [
+    leetcode: [
       {
         title: "LeetCode Profile",
         url: LEETCODE_URL,
         description: "Knight badge holder (Rating: 1874) — see my problem-solving",
       },
     ],
-    portfolio_link: [
+    portfolio: [
       {
         title: "Portfolio Website",
         url: PORTFOLIO_URL,
         description: "My personal portfolio showcasing projects and skills",
       },
     ],
-    project_links: [
-      {
-        title: "Patient Management System",
-        url: "https://github.com/Devharsh01/Patient-Management-System",
-        description: "Microservices-based Patient Management System",
-      },
-      {
-        title: "Exec OS",
-        url: "https://github.com/Devharsh01/Exec-OS",
-        description: "Autonomous AI Agent SaaS",
-      },
-      {
-        title: "Fashion Cave",
-        url: "https://github.com/Devharsh01/Fashion-Cave",
-        description: "Full-stack fashion e-commerce platform",
-      },
-      {
-        title: "Rendition Website",
-        url: "https://github.com/Devharsh01/Rendition-Website",
-        description: "Theatre society website with a 3D immersive experience",
-      },
-      {
-        title: "GitHub",
-        url: GITHUB_URL,
-        description: "All my repositories and open-source work",
-      },
-    ],
   };
 
-  // Define the structured data templates for general categories
+  // Handle projects category
+  if (category === "projects") {
+    if (subset && projectTemplates[subset]) {
+      return JSON.stringify({ type: "projects", data: projectTemplates[subset] }, null, 2);
+    }
+    // Return all projects
+    return JSON.stringify({
+      type: "projects",
+      data: [
+        ...projectTemplates.patient_management,
+        ...projectTemplates.exec_os,
+        ...projectTemplates.fashion_cave,
+        ...projectTemplates.rendition,
+        ...projectTemplates.stable_diffusion,
+      ],
+    }, null, 2);
+  }
+
+  // Handle experience category
+  if (category === "experience") {
+    if (subset && experienceTemplates[subset]) {
+      return JSON.stringify({ type: "experience", data: experienceTemplates[subset] }, null, 2);
+    }
+    // Return all experience
+    return JSON.stringify({
+      type: "experience",
+      data: [
+        ...experienceTemplates.flexport,
+        ...experienceTemplates.deloitte,
+      ],
+    }, null, 2);
+  }
+
+  // Handle contact category
+  if (category === "contact") {
+    if (subset && contactTemplates[subset]) {
+      return JSON.stringify({ type: "contact", data: contactTemplates[subset] }, null, 2);
+    }
+    // Return all contact
+    return JSON.stringify({
+      type: "contact",
+      data: {
+        email: EMAIL,
+        phone: PHONE_DISPLAY,
+        location: "India",
+        linkedin: LINKEDIN_URL,
+        github: GITHUB_URL,
+        portfolio: PORTFOLIO_URL,
+      },
+    }, null, 2);
+  }
+
+  // Handle links category
+  if (category === "links") {
+    if (subset && linkTemplates[subset]) {
+      return JSON.stringify({ type: "links", data: linkTemplates[subset] }, null, 2);
+    }
+    // Return all links
+    return JSON.stringify({
+      type: "links",
+      data: [
+        { title: "Portfolio Website", url: PORTFOLIO_URL, description: "My personal portfolio showcasing projects and skills" },
+        { title: "Resume", url: RESUME_URL, description: "View my detailed resume" },
+        { title: "GitHub Profile", url: GITHUB_URL, description: "Check out my code repositories and contributions" },
+        { title: "LinkedIn", url: LINKEDIN_URL, description: "Connect with me professionally" },
+        { title: "LeetCode", url: LEETCODE_URL, description: "Knight badge holder (Rating: 1874)" },
+        ...projectTemplates.fashion_cave.map((p: any) => ({ title: p.title, url: p.link, description: p.description })),
+        ...projectTemplates.rendition.map((p: any) => ({ title: p.title, url: p.link, description: p.description })),
+      ],
+    }, null, 2);
+  }
+
+  // Handle general categories
   const structuredDataTemplates: Record<string, any> = {
     skills: [
       { name: "Java", category: "Programming Language" },
@@ -488,59 +562,6 @@ function generateStructuredResponse(queryType: string): string {
       { name: "CI/CD", category: "DevOps" },
       { name: "Git", category: "Version Control" },
     ],
-    projects: [
-      {
-        title: "Patient Management System",
-        description:
-          "A microservices-based Patient Management System with 5+ independent services (patient, appointment, billing), utilizing Spring Boot, Docker, Apache Kafka for event-driven messaging, and AWS LocalStack.",
-        technologies: ["Java", "Spring Boot", "Microservices", "Kafka", "Docker", "AWS LocalStack"],
-        link: "https://github.com/Devharsh01/Patient-Management-System",
-      },
-      {
-        title: "Exec OS: Autonomous AI Agent SaaS",
-        description:
-          "A full-stack autonomous AI 'Executive Assistant' SaaS that runs background tasks autonomously, processes Gmail/Calendar data, features a heartbeat mechanism via Cron, and reasoning logs transparency.",
-        technologies: ["Next.js 15", "React 19", "TypeScript", "Vercel AI SDK", "Claude API", "Drizzle ORM", "PostgreSQL"],
-        link: "https://github.com/Devharsh01/Exec-OS",
-      },
-      {
-        title: "Fashion Cave",
-        description:
-          "A modern, full-stack fashion e-commerce platform with a dynamic storefront, admin dashboard, and a scalable Node.js/Express backend over MongoDB.",
-        technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "Stripe", "REST APIs"],
-        link: "https://github.com/Devharsh01/Fashion-Cave",
-      },
-      {
-        title: "Rendition",
-        description:
-          "The official digital presence of Rendition, the Theatre Society of LNMIIT — featuring a 3D immersive experience, enrollment system, and complete club management.",
-        technologies: ["React", "Node.js", "MongoDB", "Three.js", "Tailwind CSS", "Framer Motion"],
-        link: "https://github.com/Devharsh01/Rendition-Website",
-      },
-      {
-        title: "High-Resolution Image Generation using Stable Diffusion",
-        description:
-          "Implemented Diffusion and Latent Diffusion Models achieving 4x super-resolution on satellite imagery, outperforming GANs while preserving structural integrity.",
-        technologies: ["Python", "PyTorch", "TensorFlow", "Stable Diffusion", "Hugging Face", "GANs"],
-        link: "https://github.com/Devharsh01/",
-      },
-    ],
-    experience: [
-      {
-        title: "Software Engineer Intern",
-        company: "Flexport",
-        period: "Jan 2026 - Jun 2026",
-        description:
-          "Architected and delivered a highly scalable PWA with automation frameworks and tests, driving 480+ daily scans and cutting non-compliance resolution time by 50%. Resolved a device security vulnerability with an HMAC signed-token auth flow, optimized cloud infra with Terraform (USD 900+/month savings), and integrated Slack/PagerDuty on-call alerting.",
-      },
-      {
-        title: "Product Engineer Summer Intern",
-        company: "Deloitte",
-        period: "May 2025 - Jul 2025",
-        description:
-          "Built a scalable full-stack Performance Management System for employee goal tracking and role-based workflows. Designed automated backend test suites (Node.js, Express.js, PostgreSQL) ensuring secure REST API communication, collaborating with engineers, PMs, and UX experts.",
-      },
-    ],
     education: [
       {
         title: "B.Tech in Computer Science and Engineering",
@@ -549,14 +570,6 @@ function generateStructuredResponse(queryType: string): string {
         description: "CGPA: 7.86",
       },
     ],
-    contact: {
-      email: EMAIL,
-      phone: PHONE_DISPLAY,
-      location: "India",
-      linkedin: LINKEDIN_URL,
-      github: GITHUB_URL,
-      portfolio: PORTFOLIO_URL,
-    },
     awards: [
       {
         title: "LeetCode Knight Badge (Rating: 1874)",
@@ -569,90 +582,47 @@ function generateStructuredResponse(queryType: string): string {
           "Directed 7 event teams, driving a 25% growth in sponsorship revenue and improving overall attendee satisfaction.",
       },
     ],
-    links: [
-      {
-        title: "Portfolio Website",
-        url: PORTFOLIO_URL,
-        description: "My personal portfolio showcasing projects and skills",
-      },
-      {
-        title: "Resume",
-        url: RESUME_URL,
-        description: "View my detailed resume",
-      },
-      {
-        title: "GitHub Profile",
-        url: GITHUB_URL,
-        description: "Check out my code repositories and contributions",
-      },
-      {
-        title: "LinkedIn",
-        url: LINKEDIN_URL,
-        description: "Connect with me professionally",
-      },
-      {
-        title: "LeetCode",
-        url: LEETCODE_URL,
-        description: "Knight badge holder (Rating: 1874)",
-      },
-      {
-        title: "Fashion Cave",
-        url: "https://github.com/Devharsh01/Fashion-Cave",
-        description: "Full-stack fashion e-commerce platform",
-      },
-      {
-        title: "Rendition Website",
-        url: "https://github.com/Devharsh01/Rendition-Website",
-        description: "Theatre society website with a 3D immersive experience",
-      },
-    ],
   };
 
-  // Check if it's a specific project type
-  if (queryType.includes("_project")) {
-    return JSON.stringify(
-      {
-        type: "projects",
-        data: projectTemplates[queryType],
-      },
-      null,
-      2
-    );
+  if (structuredDataTemplates[category]) {
+    return JSON.stringify({
+      type: category,
+      data: structuredDataTemplates[category],
+    }, null, 2);
   }
 
-  // Check if it's a specific contact type
-  if (queryType.includes("_contact")) {
-    return JSON.stringify(
-      {
-        type: "contact",
-        data: contactTemplates[queryType],
-      },
-      null,
-      2
-    );
-  }
-
-  // Check if it's a specific link type
-  if (queryType.includes("_link")) {
-    return JSON.stringify(
-      {
-        type: "links",
-        data: linkTemplates[queryType],
-      },
-      null,
-      2
-    );
-  }
-
-  // Otherwise return the general category data
-  return JSON.stringify(
-    {
-      type: queryType,
-      data: structuredDataTemplates[queryType],
+  // Fallback / legacy support for exact original keys
+  const legacyTemplates: Record<string, any> = {
+    patient_management_project: { type: "projects", data: projectTemplates.patient_management },
+    exec_os_project: { type: "projects", data: projectTemplates.exec_os },
+    fashion_cave_project: { type: "projects", data: projectTemplates.fashion_cave },
+    rendition_project: { type: "projects", data: projectTemplates.rendition },
+    stable_diffusion_project: { type: "projects", data: projectTemplates.stable_diffusion },
+    email_contact: { type: "contact", data: contactTemplates.email },
+    phone_contact: { type: "contact", data: contactTemplates.phone },
+    location_contact: { type: "contact", data: contactTemplates.location },
+    resume_link: { type: "links", data: linkTemplates.resume },
+    github_link: { type: "links", data: linkTemplates.github },
+    linkedin_link: { type: "links", data: linkTemplates.linkedin },
+    leetcode_link: { type: "links", data: linkTemplates.leetcode },
+    portfolio_link: { type: "links", data: linkTemplates.portfolio },
+    project_links: {
+      type: "links",
+      data: [
+        { title: "Patient Management System", url: "/projects/patient-ms", description: "Microservices-based Patient Management System" },
+        { title: "Exec OS", url: "/projects/exec-os", description: "Autonomous AI Agent SaaS" },
+        { title: "Fashion Cave", url: "/projects/fashion-cave", description: "Full-stack fashion e-commerce platform" },
+        { title: "Rendition Website", url: "/projects/rendition", description: "Theatre society website with a 3D immersive experience" },
+        { title: "GitHub", url: GITHUB_URL, description: "All my repositories and open-source work" },
+      ],
     },
-    null,
-    2
-  );
+  };
+
+  if (legacyTemplates[queryType]) {
+    return JSON.stringify(legacyTemplates[queryType], null, 2);
+  }
+
+  return JSON.stringify({ type: category, data: [] }, null, 2);
 }
 
 export async function POST(req: Request) {
@@ -744,71 +714,53 @@ export async function POST(req: Request) {
     // Define the function that calls the model with context
     const callModel = async (state: typeof MessagesAnnotation.State) => {
       try {
-        // Get the last user message to use for vector search
-        const lastUserMessage = state.messages
-          .filter((msg) => msg._getType() === "human")
-          .pop();
-
-        const userQuery = lastUserMessage
-          ? (lastUserMessage.content as string)
-          : "";
-
-        // Detect if this is a query that will have structured data
-        const willHaveStructuredData = !!queryType;
-
         // Optimization: Use cached vector search results if available
         let characterInfo = characterContent;
 
-        // Modify system prompt based on whether structured data will be added
-        let systemContent = `You are Dev Harsh Agarwal, a Full Stack Engineer with expertise in TypeScript, Node.js, React.js, Next.js, and AWS.`;
+        // Configure system prompt to instruct LLM on dynamic card dispatching
+        let systemContent = `You are Dev Harsh Agarwal, a Full Stack Engineer with expertise in TypeScript, Node.js, React.js, Next.js, and AWS. Speak as Dev Harsh using "I" and "my".
 
-        if (willHaveStructuredData) {
-          // For queries that will have structured data, instruct the model to be brief
-          systemContent += ` For this query, provide a VERY BRIEF conversational introduction only. DO NOT list specific details like skills, projects, contact info, or links - these will be displayed separately in a structured format. Keep your response to 1-2 sentences maximum.`;
-        } else {
-          // For queries without structured data, allow normal detailed responses
-          systemContent += ` Keep responses concise and use "I" statements.`;
-        }
+Rules:
+1. Speak as Dev Harsh using "I" and "my"
+2. Keep responses concise, focused, and professional.
+3. If unsure about specific details, say "Feel free to contact me directly for more information"
+4. Use web search results when provided for up-to-date information
+5. Maintain a professional tone.
+
+You have access to interactive "Structured Cards" that can be shown to the user in the UI. When a user asks to see, list, or download information of a certain category, you MUST trigger the corresponding card by appending the tag \`[SHOW_CARD: <card_type>]\` or \`[SHOW_CARD: <card_type>:<subset>]\` to the very end of your response.
+
+Supported tags:
+- \`[SHOW_CARD: skills]\` - Show my skills list (Trigger when user asks for skills, technologies, tech stack, programming languages, tools, etc.)
+- \`[SHOW_CARD: projects]\` - Show all my projects (Trigger when user asks to see/list projects, work, applications, portfolio)
+- \`[SHOW_CARD: projects:patient_management]\` - Show the Patient Management System project card (Trigger when user asks about this specific project or medical/hospital service)
+- \`[SHOW_CARD: projects:exec_os]\` - Show the Exec OS SaaS project card (Trigger when user asks about this specific project or AI executive assistant SaaS)
+- \`[SHOW_CARD: projects:fashion_cave]\` - Show the Fashion Cave e-commerce project card (Trigger when user asks about this specific project or fashion store)
+- \`[SHOW_CARD: projects:rendition]\` - Show the Rendition theatre club project card (Trigger when user asks about this specific project or theater club site)
+- \`[SHOW_CARD: projects:stable_diffusion]\` - Show the Stable Diffusion image generation project card (Trigger when user asks about image generation, diffusion models, or satellite imagery)
+- \`[SHOW_CARD: experience]\` - Show all work experience (Trigger when user asks for work history, career, resume details, background, internships)
+- \`[SHOW_CARD: experience:flexport]\` - Show work experience at Flexport only (Trigger when user asks for details or experience specifically at Flexport)
+- \`[SHOW_CARD: experience:deloitte]\` - Show work experience at Deloitte only (Trigger when user asks for details or experience specifically at Deloitte)
+- \`[SHOW_CARD: education]\` - Show my education details (Trigger when user asks about my university, degree, college, LNMIIT)
+- \`[SHOW_CARD: contact]\` - Show my full contact details (Trigger when user asks how to get in touch, contact, reach me)
+- \`[SHOW_CARD: contact:email]\` - Show email card only (Trigger when user asks for my email)
+- \`[SHOW_CARD: contact:phone]\` - Show phone card only (Trigger when user asks for my phone/contact number)
+- \`[SHOW_CARD: links]\` - Show all profile links (Trigger when user asks for my links, urls, profiles)
+- \`[SHOW_CARD: links:resume]\` - Show resume/CV download card (Trigger when user asks for my resume, CV, or curriculum vitae)
+- \`[SHOW_CARD: links:github]\` - Show my GitHub profile link (Trigger when user asks for GitHub profile/code)
+- \`[SHOW_CARD: links:linkedin]\` - Show my LinkedIn link (Trigger when user asks for LinkedIn profile)
+- \`[SHOW_CARD: links:leetcode]\` - Show my LeetCode profile link (Trigger when user asks for LeetCode profile or rating)
+- \`[SHOW_CARD: links:portfolio]\` - Show my portfolio site link (Trigger when user asks for portfolio website link)
+- \`[SHOW_CARD: awards]\` - Show achievements and awards (Trigger when user asks about achievements, trophies, knight badge, etc.)
+
+Instructions for triggering cards:
+1. Trigger a card whenever the user asks to see, list, download, describe, summarize, or get an overview of your projects, skills, experience, contact details, links, or education (including specific ones, e.g., "What is my experience at Flexport?", "Tell me about Deloitte", "Describe Fashion Cave").
+2. If you trigger a card, keep your conversational response extremely brief (1 sentence max, e.g., "Here is my experience at Flexport:") or empty, and append the corresponding tag at the end.
+3. ONLY answer conversationally without triggering a card when the user asks a highly specific question about a technical concept, language proficiency, or a single detail (e.g., "Do you know PyTorch?", "Have you used Kafka?", "Who created you?"). Do NOT trigger a card in these cases.`;
 
         // Only include character info if we have it
         if (characterInfo) {
           systemContent += `\n\nRelevant information about me:\n${characterInfo}`;
         }
-
-        // Add specific instructions based on query type
-        if (queryType && queryType.includes("_project")) {
-          const projectName = queryType
-            .replace("_project", "")
-            .replace("_", " ");
-          systemContent += `\n\nThis question is about my ${projectName} project. Just provide a brief introduction - the details will be shown in a structured format.`;
-        } else if (queryType && queryType.includes("_contact")) {
-          const contactType = queryType.replace("_contact", "");
-          systemContent += `\n\nThis question is about my ${contactType}. Just acknowledge the request - the actual ${contactType} will be shown in a structured format.`;
-        } else if (queryType && queryType.includes("_link")) {
-          const linkType = queryType.replace("_link", "");
-          systemContent += `\n\nThis question is about my ${linkType} link. Just acknowledge the request - the actual link will be shown in a structured format.`;
-        } else if (queryType === "skills") {
-          systemContent += `\n\nThis question is about my skills. Just provide a brief introduction - the detailed skills list will be shown in a structured format.`;
-        } else if (queryType === "projects") {
-          systemContent += `\n\nThis question is about my projects. Just provide a brief introduction - the detailed project list will be shown in a structured format.`;
-        } else if (queryType === "experience") {
-          systemContent += `\n\nThis question is about my experience. Just provide a brief introduction - the detailed experience will be shown in a structured format.`;
-        } else if (queryType === "education") {
-          systemContent += `\n\nThis question is about my education. Just provide a brief introduction - the detailed education info will be shown in a structured format.`;
-        } else if (queryType === "contact") {
-          systemContent += `\n\nThis question is about my contact information. Just acknowledge the request - the actual contact details will be shown in a structured format.`;
-        } else if (queryType === "links") {
-          systemContent += `\n\nThis question is about my online profiles and resources. Just acknowledge the request - the actual links will be shown in a structured format.`;
-        } else if (queryType) {
-          systemContent += `\n\nThis question is about my ${queryType}. Just provide a brief introduction - the details will be shown in a structured format.`;
-        }
-
-        systemContent += `\n\nRules:
-        1. Speak as Dev Harsh using "I" and "my"
-        2. Keep responses concise and focused
-        3. If unsure about specific details, say "Feel free to contact me directly for more information"
-        4. Use web search results when provided for up-to-date information
-        5. Maintain a professional tone`;
 
         // Manage system message efficiently
         if (
@@ -877,12 +829,74 @@ export async function POST(req: Request) {
     let response = finalState.messages[finalState.messages.length - 1]
       .content as string;
 
-    // If we have a query type, append the structured data JSON to the response
+    console.log("=== API CHAT LOGS ===");
+    console.log("User Prompt:", prompt);
+    console.log("Raw LLM Response:", response);
+    console.log("Pre-detected queryType:", queryType);
+
+    // Parse the tag [SHOW_CARD: category:subset] or [SHOW_CARD: category]
+    const cardRegex = /\[SHOW_CARD:\s*([a-zA-Z0-9_-]+)(?::([a-zA-Z0-9_-]+))?\s*\]/;
+    const match = response.match(cardRegex);
+    let resolvedQueryType: string | null = null;
     let hasStructuredData = false;
-    if (queryType) {
-      const structuredData = generateStructuredResponse(queryType);
+
+    if (match) {
+      const category = match[1];
+      const subset = match[2];
+      
+      // Determine the queryType representation
+      if (subset) {
+        resolvedQueryType = `${category}:${subset}`;
+      } else {
+        resolvedQueryType = category;
+      }
+      
+      console.log("Parsed Card Trigger Tag:", match[0], "-> Resolved Type:", resolvedQueryType);
+
+      // Remove the tag from the response text
+      response = response.replace(cardRegex, "").trim();
+      
+      // Load structured data
+      const structuredData = generateStructuredResponse(resolvedQueryType);
       response += `\n\n\`\`\`json\n${structuredData}\n\`\`\``;
       hasStructuredData = true;
+    }
+
+    // Fallback: If no card was matched but the user query is deterministic
+    if (!hasStructuredData && queryType) {
+      const lowerPrompt = prompt.toLowerCase().trim().replace(/[?.]/g, "");
+      
+      const directPredefinedPrompts = [
+        "what are your skills",
+        "tell me about your projects",
+        "tell me about your experience",
+        "what is your leetcode rating",
+        "what are your achievements",
+        "how can i contact you"
+      ];
+      
+      const isExactPredefined = directPredefinedPrompts.includes(lowerPrompt);
+      const isShortCommand = [
+        "skills", "projects", "experience", "contact", "achievements", "awards", "education",
+        "resume", "github", "linkedin", "leetcode", "links", "flexport", "deloitte",
+        "patient management", "exec os", "fashion cave", "rendition"
+      ].includes(lowerPrompt);
+      
+      const isDirectVerbRequest = 
+        lowerPrompt.startsWith("show ") || 
+        lowerPrompt.startsWith("list ") || 
+        lowerPrompt.startsWith("give me ") || 
+        lowerPrompt.startsWith("get ");
+
+      console.log("Fallback check details:", { isExactPredefined, isShortCommand, isDirectVerbRequest, queryType });
+
+      if (isExactPredefined || isShortCommand || isDirectVerbRequest) {
+        resolvedQueryType = queryType;
+        console.log("Fallback triggered! resolvedQueryType:", resolvedQueryType);
+        const structuredData = generateStructuredResponse(resolvedQueryType);
+        response += `\n\n\`\`\`json\n${structuredData}\n\`\`\``;
+        hasStructuredData = true;
+      }
     }
 
     // Performance monitoring
@@ -897,7 +911,7 @@ export async function POST(req: Request) {
         response,
         isSearchPerformed: isSearchQuery,
         hasStructuredData: hasStructuredData,
-        structuredDataType: queryType,
+        structuredDataType: resolvedQueryType,
         sessionId: threadId,
       }),
       {

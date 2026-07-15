@@ -204,9 +204,15 @@ const MessageContent: React.FC<{
       message.content.toLowerCase().includes("made") ||
       message.content.toLowerCase().includes("developer"));
 
+  const showStructuredCard = message.structuredContent && !isBasicQuestion;
+
+  if (showStructuredCard) {
+    return <>{renderStructuredContent(message.structuredContent!)}</>;
+  }
+
   return (
     <>
-      {/* Always show the text response */}
+      {/* Always show the text response when no structured card is present */}
       {message.content.trim() && (
         <div
           className="prose prose-invert prose-xs max-w-none text-sm"
@@ -217,18 +223,6 @@ const MessageContent: React.FC<{
           }}
         />
       )}
-
-      {/* Add a small divider if we have both text and structured content */}
-      {message.content.trim() &&
-        message.structuredContent &&
-        !isBasicQuestion && (
-          <div className="my-2 border-t border-[#e4ded7]/20"></div>
-        )}
-
-      {/* Only render structured content if it's not a basic question about the creator */}
-      {message.structuredContent &&
-        !isBasicQuestion &&
-        renderStructuredContent(message.structuredContent)}
     </>
   );
 };

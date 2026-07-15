@@ -178,7 +178,7 @@ export const LinkCard: React.FC<LinkCardProps> = ({ links }) => {
     });
 
     // Filter out empty categories
-    return Object.entries(groups).filter(([links]) => links.length > 0);
+    return Object.entries(groups).filter(([_, linksArray]) => linksArray.length > 0);
   };
 
   const groupedLinks = groupLinksByCategory();

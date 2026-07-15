@@ -1,5 +1,6 @@
 import React from "react";
 import { BsCardChecklist } from "react-icons/bs";
+import Link from "next/link";
 
 export interface Project {
   title: string;
@@ -30,14 +31,23 @@ export const ProjectsCard: React.FC<ProjectsCardProps> = ({ projects }) => (
             <h3 className="font-semibold text-[#e4ded7]">{project.title}</h3>
           </div>
           {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#e4ded7]/80 hover:text-[#e4ded7] text-sm font-medium transition-colors duration-300 hover:underline"
-            >
-              View Project →
-            </a>
+            project.link.startsWith("/") ? (
+              <Link
+                href={project.link}
+                className="text-[#e4ded7]/80 hover:text-[#e4ded7] text-sm font-medium transition-colors duration-300 hover:underline"
+              >
+                View Project →
+              </Link>
+            ) : (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#e4ded7]/80 hover:text-[#e4ded7] text-sm font-medium transition-colors duration-300 hover:underline"
+              >
+                View Project →
+              </a>
+            )
           )}
         </div>
         <p className="mt-2 text-sm text-[#e4ded7]/80 leading-relaxed">{project.description}</p>
