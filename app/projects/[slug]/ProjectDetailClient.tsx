@@ -229,6 +229,8 @@ export default function ProjectDetailClient({ mdxContent, projectData }: Project
                 <TableOfContents
                   toc={toc}
                   activeSection={activeSection}
+                  github={projectData.github}
+                  demo={projectData.demo}
                 />
               </div>
             </motion.aside>

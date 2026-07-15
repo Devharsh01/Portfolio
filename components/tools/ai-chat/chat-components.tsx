@@ -167,7 +167,13 @@ export const MessageDisplay: React.FC<MessageDisplayProps> = ({
                   renderStructuredContent={renderStructuredContent}
                 />
               )}
-              <div className="mt-2 text-[10px] text-[#e4ded7]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div
+                className={`mt-2 text-[10px] ${
+                  message.type === "user"
+                    ? "text-[#0E1016]/60"
+                    : "text-[#e4ded7]/40"
+                }`}
+              >
                 {message.timestamp.toLocaleTimeString()}
               </div>
             </div>

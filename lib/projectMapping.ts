@@ -1,13 +1,8 @@
 // Mapping between project names and MDX file names
 export const projectSlugMapping: Record<string, string> = {
-  'odunsi': 'odunsi',
-  'interlock': 'interlock', 
-  'synthetix': 'synthetix',
-  'propellent': 'propellent',
-  'flixify': 'flixify',
   'fashion-cave': 'fashion-cave',
   'rendition': 'rendition',
-  'patient-management-system': 'patient-management-system',
+  'patient-ms': 'patient-management-system',
   'exec-os': 'exec-os'
 };
 

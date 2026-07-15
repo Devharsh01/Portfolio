@@ -2,6 +2,9 @@
 
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export type HeadingScrollSpy = Array<{
   id: string;
@@ -12,9 +15,11 @@ export type HeadingScrollSpy = Array<{
 interface TableOfContentsProps {
   toc: HeadingScrollSpy;
   activeSection: string;
+  github?: string;
+  demo?: string;
 }
 
-export default function TableOfContents({ toc, activeSection }: TableOfContentsProps) {
+export default function TableOfContents({ toc, activeSection, github, demo }: TableOfContentsProps) {
   const lastPosition = useRef<number>(0);
 
   // Auto-scroll the TOC to keep active section in view
@@ -127,6 +132,40 @@ export default function TableOfContents({ toc, activeSection }: TableOfContentsP
           />
         </div>
       </div>
+
+      {/* Links Section */}
+      {(demo || github) && (
+        <div className="mt-4 pt-4 border-t border-[#e4ded7]/10 space-y-1">
+          {demo && (
+            <motion.a
+              href={demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-[#95979D] hover:text-[#e4ded7] hover:bg-[#e4ded7]/5 transition-all duration-300"
+              whileHover={{ x: 2 }}
+              transition={{ duration: 0.2 }}
+              data-blobity-magnetic="false"
+            >
+              <FontAwesomeIcon icon={faLink} className="w-4 h-4" />
+              <span>Live Demo</span>
+            </motion.a>
+          )}
+          {github && (
+            <motion.a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-[#95979D] hover:text-[#e4ded7] hover:bg-[#e4ded7]/5 transition-all duration-300"
+              whileHover={{ x: 2 }}
+              transition={{ duration: 0.2 }}
+              data-blobity-magnetic="false"
+            >
+              <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
+              <span>GitHub</span>
+            </motion.a>
+          )}
+        </div>
+      )}
     </motion.div>
   );
 }

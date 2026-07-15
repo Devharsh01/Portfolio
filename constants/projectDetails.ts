@@ -19,7 +19,7 @@ export const devProjects = [
     keywords: ["rendition", "lnmiit", "javascript", "theatre", "society", "club-website", "auditions", "recruitment","enrollment-form", "gallery", "contact-form", "3d", "3d-visuals", "3d-animations", "react", "reactjs", "vite", "tailwind", "tailwindcss", "postcss", "threejs", "three.js", "react-three-fiber", "drei", "gsap", "framer-motion","lucide-react", "cloudinary", "emailjs", "nodemailer", "node", "nodejs", "express", "mongodb", "mongoose", "jwt", "jsonwebtoken", "bcryptjs", "multer", "smooth-page-transitions", "registration" , "authentication", "protected-routes", "file", "uploads", "media-management", "contact-and-inquiries", "responsive", "mobile", "friendly"],
     github: "https://github.com/Devharsh01/Rendition-Website",
     demo: "https://rendition.onrender.com/",
-    image: require("public/projects/odunsi-flip.png"),
+    image: require("public/projects/rendition(2).png"),
     available: true,
   },
   {
@@ -31,19 +31,19 @@ export const devProjects = [
     keywords: ["fashion-cave", "fashion", "javascript", "retail", "ecommerce", "e-commerce", "infinite-scroll", "infinite-product-scroll", "admin", "inventory-management", "checkout", "cart", "react", "reactjs", "react-router-dom", "node", "nodejs", "express", "mongodb", "mongoose", "stripe", "stripe-api","nodemailer", "multer", "gsap", "locomotive-scroll", "lottie", "lottie-web", "jwt", "jsonwebtoken", "bcryptjs", "validator", "dotenv", "responsive-design", "mobile-first", "infinite-scrolling-catalog", "client-side-cart", "server-side-api", "authentication","admin-panel", "payment", "stripe", "email", "file"],
     github: "https://github.com/Devharsh01/Fashion-Cave",
     demo: "https://fashion-cave-frontend.onrender.com/",
-    image: require("public/projects/synthetix-flip.png"),
+    image: require("public/projects/FashionCave.png"),
     available: true,
   },
   {
     id: 2,
-    name: "Patient Management System",
+    name: "Patient MS",
     description:
       "A microservices-based Patient Management System decomposing the application into 5+ independent services (patient, appointment, billing), improving modularity and enabling 60% faster feature development.",
     technologies: ["Java", "Spring Boot", "Microservices", "Kafka", "Docker", "AWS LocalStack"],
     keywords: ["patient-management", "java", "spring-boot", "microservices", "kafka", "docker", "localstack", "aws", "backend", "scalable", "distributed-systems"],
     github: "https://github.com/Devharsh01/Patient-Management-System",
     demo: "",
-    image: require("public/projects/interlock-new-flip.png"),
+    image: require("public/projects/PMS.png"),
     available: true,
   },
   {
@@ -54,8 +54,8 @@ export const devProjects = [
     technologies: ["Next.js", "React", "TypeScript", "Vercel AI SDK", "Claude API", "Drizzle ORM", "PostgreSQL"],
     keywords: ["exec-os", "ai-agent", "autonomous", "vercel-ai-sdk", "claude-api", "cron", "drizzle", "postgresql", "saas", "agentic-workflows"],
     github: "https://github.com/Devharsh01/Exec-OS",
-    demo: "",
-    image: require("public/projects/propellent-new-flip.png"),
+    demo: "https://exec-os-executive-assistant.vercel.app/",
+    image: require("public/projects/ExecOS.png"),
     available: true,
   }
 ];

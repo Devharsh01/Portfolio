@@ -49,33 +49,37 @@ const DetailedProjectCard = ({
       >
         {available ? (
           <>
-            <Link
-              href={github}
-              target="_blank"
-              className="rounded-full"
-              aria-label="Open GitHub Repository"
-            >
-              <FontAwesomeIcon
-                icon={faGithub}
-                className=" w-[18px] rounded-full bg-white p-4 text-[18px] md:w-[20px] md:text-[20px] lg:w-[22px] lg:text-[22px]"
-                data-blobity
-                data-blobity-radius="32"
-                data-blobity-offset-x="4"
-                data-blobity-offset-y="4"
-                data-blobity-magnetic="true"
-              />
-            </Link>
-            <Link href={demo} target="_blank" aria-label="Open Live Demo">
-              <FontAwesomeIcon
-                icon={faLink}
-                className=" w-[18px] rounded-full bg-white p-4 text-[18px] md:w-[20px] md:text-[20px] lg:w-[22px] lg:text-[22px]"
-                data-blobity
-                data-blobity-radius="32"
-                data-blobity-offset-x="4"
-                data-blobity-offset-y="4"
-                data-blobity-magnetic="trues"
-              />
-            </Link>
+            {github && (
+              <Link
+                href={github}
+                target="_blank"
+                className="rounded-full"
+                aria-label="Open GitHub Repository"
+              >
+                <FontAwesomeIcon
+                  icon={faGithub}
+                  className=" w-[18px] rounded-full bg-white p-4 text-[18px] md:w-[20px] md:text-[20px] lg:w-[22px] lg:text-[22px]"
+                  data-blobity
+                  data-blobity-radius="32"
+                  data-blobity-offset-x="4"
+                  data-blobity-offset-y="4"
+                  data-blobity-magnetic="true"
+                />
+              </Link>
+            )}
+            {demo && (
+              <Link href={demo} target="_blank" aria-label="Open Live Demo">
+                <FontAwesomeIcon
+                  icon={faLink}
+                  className=" w-[18px] rounded-full bg-white p-4 text-[18px] md:w-[20px] md:text-[20px] lg:w-[22px] lg:text-[22px]"
+                  data-blobity
+                  data-blobity-radius="32"
+                  data-blobity-offset-x="4"
+                  data-blobity-offset-y="4"
+                  data-blobity-magnetic="trues"
+                />
+              </Link>
+            )}
           </>
         ) : (
           <div className=" flex items-center justify-center gap-4">

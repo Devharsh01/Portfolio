@@ -282,12 +282,15 @@ export default function EmailForm({ onEmailSent, onMessageCountChange }: EmailFo
       setAlertMessage("Your message has been sent successfully. I'll get back to you soon!");
       setShowSuccessAlert(true);
       
-      // Clear form
+      // Clear form and reset to initial step
       setPrompt("");
       setEmailContent("");
       setSenderName("");
       setSenderEmail("");
       setSubject("");
+      setSelectedTemplate(null);
+      setMode("ai");
+      setCurrentStep("details");
       setStatus("success");
     } catch (error) {
       console.error("Error sending email:", error);

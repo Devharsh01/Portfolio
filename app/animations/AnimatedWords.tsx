@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { getPreloaderFlag } from "../utils/preloaderFlag";
 
 type AnimatedWordsProps = {
   title: string;
@@ -37,7 +38,7 @@ const AnimatedWords: React.FC<AnimatedWordsProps> = ({ title, style }) => {
       opacity: 1,
       y: 0,
       transition: {
-        delay: 6,
+        delay: getPreloaderFlag() ? 6 : 0,
         ease: [0.2, 0.65, 0.3, 0.9],
         duration: 1,
       },

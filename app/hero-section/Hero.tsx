@@ -5,9 +5,14 @@ import { motion } from "framer-motion";
 import { imageAnimation, bodyAnimation } from "../animations/animations";
 import AnimatedWords from "../animations/AnimatedWords";
 import profile from "../../public/profile1.jpeg";
-import { GITHUB_URL, LINKEDIN_URL, LEETCODE_URL, WHATSAPP_URL } from "@/constants/site";
+import { GITHUB_URL, LINKEDIN_URL, LEETCODE_URL } from "@/constants/site";
+import { getPreloaderFlag } from "../utils/preloaderFlag";
 
 const Hero = () => {
+  const isFirstLoad = getPreloaderFlag();
+  const imgAnim = imageAnimation(isFirstLoad);
+  const bodyAnim = bodyAnimation(isFirstLoad);
+
   return (
     <motion.section
       className="relative z-10 flex h-[85vh] w-full items-stretch justify-center bg-[url('.//../public/hero.jpg')] Wbg-cover  bg-center py-0 sm:h-[90vh]  md:h-[100vh] 3xl:h-[85vh]"
@@ -20,14 +25,18 @@ const Hero = () => {
       <div className="absolute top-10 flex justify-between sm:w-[90%] lg:max-w-[1440px]">
         <div>
           <Link
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Chat on WhatsApp"
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("contact")?.scrollIntoView({
+                behavior: "smooth",
+              });
+            }}
+            aria-label="Scroll to Contact Section"
           >
             <motion.button
               className="hidden rounded-md border-2 border-[#e4ded7] py-2 px-4 text-[14px] font-semibold text-[#e4ded7] sm:block  md:text-[16px] lg:block"
-              variants={bodyAnimation}
+              variants={bodyAnim}
             >
               LET'S TALK
             </motion.button>
@@ -44,7 +53,7 @@ const Hero = () => {
           >
             <motion.p
               className="text-[16px] font-bold text-[#e4ded7] md:text-[16px]"
-              variants={bodyAnimation}
+              variants={bodyAnim}
             >
               GH
             </motion.p>
@@ -58,7 +67,7 @@ const Hero = () => {
           >
             <motion.p
               className="text-[16px] font-bold text-[#e4ded7] md:text-[16px]"
-              variants={bodyAnimation}
+              variants={bodyAnim}
             >
               LN
             </motion.p>
@@ -72,7 +81,7 @@ const Hero = () => {
           >
             <motion.p
               className="text-[16px] font-bold text-[#e4ded7] md:text-[16px]"
-              variants={bodyAnimation}
+              variants={bodyAnim}
             >
               LT
             </motion.p>
@@ -90,7 +99,7 @@ const Hero = () => {
           />
           <motion.div
             className="absolute bottom-[-110px] mx-auto sm:bottom-[-100px] md:bottom-[-130px] lg:bottom-[-170px]"
-            variants={imageAnimation}
+            variants={imgAnim}
           >
             <Image
               src={profile}
@@ -111,7 +120,7 @@ const Hero = () => {
       >
         <motion.div
           className="  max-w-[350px] md:max-w-[400px] lg:max-w-[400px]"
-          variants={bodyAnimation}
+          variants={bodyAnim}
         >
           <p className="z-50 text-center text-[16px] font-medium text-[#e4ded7] md:text-[20px] lg:text-left">
             Full Stack Engineer and Web Designer, prev at{" "}
@@ -129,7 +138,7 @@ const Hero = () => {
 
         <motion.div
           className="  hidden max-w-[500px] lg:block lg:max-w-[420px]"
-          variants={bodyAnimation}
+          variants={bodyAnim}
         >
           <p className="text-right text-[16px] font-semibold text-[#e4ded7] md:text-[20px]">
             Focused on interfaces and experiences, working from India.

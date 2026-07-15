@@ -1,4 +1,4 @@
-import { getPreloaderFlag } from "../utils/preloaderFlag";
+
 
 export const riseWithFade = {
   initial: {
@@ -15,7 +15,7 @@ export const riseWithFade = {
   },
 };
 
-export const imageAnimation = {
+export const imageAnimation = (isFirstLoad: boolean) => ({
   initial: {
     y: 50,
     opacity: 0,
@@ -26,12 +26,12 @@ export const imageAnimation = {
     scale: 1,
     y: `0em`,
     transition: {
-      delay: getPreloaderFlag() ? 6.5 : 2,
+      delay: isFirstLoad ? 6.5 : 0,
       duration: 1,
       ease: [0.2, 0.65, 0.3, 0.9],
     },
   },
-};
+});
 
 export const staggerChildren = {
   animate: {
@@ -74,7 +74,7 @@ export const wordAnimation2 = {
   },
 };
 
-export const bodyAnimation = {
+export const bodyAnimation = (isFirstLoad: boolean) => ({
   initial: {
     opacity: 0,
     y: `1em`,
@@ -83,9 +83,9 @@ export const bodyAnimation = {
     opacity: 1,
     y: `0em`,
     transition: {
-      delay: getPreloaderFlag() ? 5.5 : 1,
+      delay: isFirstLoad ? 5.5 : 0,
       duration: 1,
       ease: [0.2, 0.65, 0.3, 0.9],
     },
   },
-};
+});
