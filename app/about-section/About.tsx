@@ -25,17 +25,17 @@ const About = () => {
           <div className="mb-10 flex w-[100%] flex-col gap-4 text-[18px] font-medium  leading-relaxed tracking-wide text-[#e4ded7] md:mb-16 md:gap-6 md:text-[20px] md:leading-relaxed lg:mb-16  lg:max-w-[90%] lg:text-[24px] ">
             <AnimatedBody
               text={
-                "I'm a full stack developer who enjoys turning ideas into smooth, functional, and creative digital experiences. With a strong foundation in the MERN stack, along with Java, Python, and JavaScript, I bring together technical depth and an eye for detail. I'm also deeply curious about artificial intelligence and how it can make everyday products smarter and more impactful."
+                "Software Engineering isn't just about writing code, it's about understanding problems, making thoughtful decisions, and building solutions that people can rely on. That's what I enjoy most about it. I find myself drawn to understanding how systems fit together, why they behave the way they do, and the trade-offs behind the decisions that shape them. "
               }
             />
             <AnimatedBody
               text={
-                "Outside of coding, I'm a fun-loving person who enjoys watching movies and anime, exploring new music, and spending time with friends. I like to think of myself as a creative problem solver - someone who enjoys experimenting with different approaches, polishing the little details, and making sure everything feels seamless."
+                "I enjoy creating products that are scalable, reliable, and polished while taking ownership from idea to production. Every project teaches me something new, whether it's a different architecture, a better design pattern, or a new way to approach a problem."
               }
             />
             <AnimatedBody
               text={
-                "For me, building software isn't just about writing code—it's about creating something meaningful, enjoyable, and lasting."
+                "Beyond engineering, my experiences have strengthened my communication, collaboration, and sense of ownership. They've taught me that building great software isn't just about writing good code—it's about understanding people, working together, and solving problems from different perspectives."
               }
             />  
           </div>
