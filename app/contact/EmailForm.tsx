@@ -808,11 +808,13 @@ export default function EmailForm({ onEmailSent, onMessageCountChange }: EmailFo
 
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 flex-1">
                       {emailTemplates.map((template, index) => (
-                        <motion.button
+                        <motion.div
                           key={index}
                           onClick={() => handleSelectTemplate(index)}
                           whileTap={{ scale: 0.98 }}
-                          className={`group flex flex-col items-center justify-center p-6 rounded-xl text-center h-full min-h-[200px] transition-all duration-300 ${
+                          role="button"
+                          data-no-blobity="true"
+                          className={`group flex flex-col items-center justify-center p-6 rounded-xl text-center h-full min-h-[200px] cursor-pointer transition-all duration-300 ${
                             selectedTemplate === index
                               ? "bg-[#e4ded7]/10 border-2 border-[#e4ded7]"
                               : "bg-[#0E1016]/60 border-2 border-[#e4ded7]/20"
@@ -827,14 +829,17 @@ export default function EmailForm({ onEmailSent, onMessageCountChange }: EmailFo
                           <p className="text-xs text-[#e4ded7]/70 mb-4 font-medium leading-relaxed">
                             {template.description}
                           </p>
-                          <span className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wide border transition-all duration-300 ${
-                            selectedTemplate === index
-                              ? "bg-[#e4ded7]/20 text-[#e4ded7] border-[#e4ded7]/30"
-                              : "bg-transparent text-[#e4ded7]/40 border-[#e4ded7]/10 group-hover:bg-[#e4ded7]/20 group-hover:text-[#e4ded7] group-hover:border-[#e4ded7]/30 group-hover:scale-105"
-                          }`}>
+                          <span 
+                            data-blobity
+                            className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wide border transition-all duration-300 ${
+                              selectedTemplate === index
+                                ? "bg-[#e4ded7]/20 text-[#e4ded7] border-[#e4ded7]/30"
+                                : "bg-transparent text-[#e4ded7]/40 border-[#e4ded7]/10 group-hover:bg-[#e4ded7]/20 group-hover:text-[#e4ded7] group-hover:border-[#e4ded7]/30 group-hover:scale-105"
+                            }`}
+                          >
                             {template.tags[0]}
                           </span>
-                        </motion.button>
+                        </motion.div>
                       ))}
                     </div>
                   </motion.div>
