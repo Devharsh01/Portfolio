@@ -9,6 +9,7 @@ import NavBar from "@/components/common/NavBar";
 import { AIChatModal } from "@/components/tools/ai-chat-modal";
 const Work = dynamic(() => import("./work-section/Work"));
 const About = dynamic(() => import("./about-section/About"));
+const Experience = dynamic(() => import("./experience-section/Experience"));
 const Blog = dynamic(() => import("./blog-section/BlogGrid"));
 const Contact = dynamic(() => import("./contact/Contact"));
 const Footer = dynamic(() => import("./footer/Footer"));
@@ -33,6 +34,7 @@ export default function Home() {
         <Hero />
         <Work />
         <About />
+        <Experience />
         <Contact />
         <Footer />
       </main>

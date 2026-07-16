@@ -28,4 +28,4 @@ export const PORTFOLIO_URL =
 
 // Resume — Google Drive link
 export const RESUME_URL =
-  "https://drive.google.com/file/d/1mW5pAXvTH291nI9Ge0NMGENbY8fOp5Xk/view?usp=sharing";
+  "https://drive.google.com/file/d/1n-puAensrUK2OGcIFhEHfPgZ-4zu7Yjn/view?usp=sharing";

@@ -4,7 +4,7 @@ Full Stack Engineer
 
 Location: India
 Phone: +91-9456658136
-Email: devharsh213@gmail.com
+Email: agarwaldevv001@gmail.com
 GitHub: https://github.com/Devharsh01/
 LinkedIn: https://www.linkedin.com/in/dev-harsh-agarwal-31351724a/
 LeetCode: https://leetcode.com/u/Dev_Harsh01/

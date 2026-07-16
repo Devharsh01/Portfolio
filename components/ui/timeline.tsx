@@ -7,7 +7,15 @@ interface TimelineEntry {
   content: React.ReactNode;
 }
 
-export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
+export const Timeline = ({
+  data,
+  title,
+  description,
+}: {
+  data: TimelineEntry[];
+  title?: string;
+  description?: string;
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -32,24 +40,30 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full font-sans relative overflow-hidden"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10 relative z-10">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-2xl md:text-4xl font-bold mb-4 text-white"
-        >
-          Journey Through Time
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-neutral-400 text-sm md:text-base max-w-xl"
-        >
-          A chronicle of my professional evolution and key milestones.
-        </motion.p>
-      </div>
+      {(title || description) && (
+        <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10 relative z-10">
+          {title && (
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl md:text-4xl font-bold mb-4 text-white"
+            >
+              {title}
+            </motion.h2>
+          )}
+          {description && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-neutral-400 text-sm md:text-base max-w-xl"
+            >
+              {description}
+            </motion.p>
+          )}
+        </div>
+      )}
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
@@ -67,7 +81,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-full bg-gradient-to-b from-blue-500/30 via-blue-500 to-blue-500/30"
+            className="absolute inset-x-0 top-0 w-full bg-gradient-to-b from-[#e4ded7]/10 via-[#e4ded7] to-[#e4ded7]/10"
           />
         </div>
       </div>
@@ -105,10 +119,10 @@ const TimelineItem = ({
         <div className="relative h-10 w-10">
           <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-neutral-900 flex items-center justify-center border border-neutral-700">
             <motion.div
-              className="h-3 w-3 rounded-full bg-blue-500"
+              className="h-3 w-3 rounded-full bg-neutral-500"
               animate={{
                 scale: isInView ? 1.5 : 1,
-                backgroundColor: isInView ? "#3b82f6" : "#60a5fa",
+                backgroundColor: isInView ? "#e4ded7" : "#737373",
               }}
               transition={{ duration: 0.3 }}
             />

@@ -13,6 +13,7 @@ import { headers } from "next/headers";
 // import { queryVectorStore } from "@/lib/embeddings";
 import jwt from "jsonwebtoken";
 import { characterContent } from "@/constants/character";
+import { experiences } from "@/constants/experience";
 import {
   PORTFOLIO_URL,
   RESUME_URL,
@@ -387,26 +388,27 @@ function generateStructuredResponse(queryType: string): string {
     ],
   };
 
+  const flexportExp = experiences.find(e => e.company.toLowerCase() === "flexport");
+  const deloitteExp = experiences.find(e => e.company.toLowerCase() === "deloitte");
+
   // Define individual experience templates
   const experienceTemplates: Record<string, any> = {
-    flexport: [
+    flexport: flexportExp ? [
       {
-        title: "Software Engineer Intern",
-        company: "Flexport",
-        period: "Jan 2026 - Jun 2026",
-        description:
-          "Architected and delivered a highly scalable PWA with automation frameworks and tests, driving 480+ daily scans and cutting non-compliance resolution time by 50%. Resolved a device security vulnerability with an HMAC signed-token auth flow, optimized cloud infra with Terraform (USD 900+/month savings), and integrated Slack/PagerDuty on-call alerting.",
+        title: flexportExp.role,
+        company: flexportExp.company,
+        period: flexportExp.period,
+        description: flexportExp.description.join(" "),
       },
-    ],
-    deloitte: [
+    ] : [],
+    deloitte: deloitteExp ? [
       {
-        title: "Product Engineer Summer Intern",
-        company: "Deloitte",
-        period: "May 2025 - Jul 2025",
-        description:
-          "Built a scalable full-stack Performance Management System for employee goal tracking and role-based workflows. Designed automated backend test suites (Node.js, Express.js, PostgreSQL) ensuring secure REST API communication, collaborating with engineers, PMs, and UX experts.",
+        title: deloitteExp.role,
+        company: deloitteExp.company,
+        period: deloitteExp.period,
+        description: deloitteExp.description.join(" "),
       },
-    ],
+    ] : [],
   };
 
   // Define individual contact templates
