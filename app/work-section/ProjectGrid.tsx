@@ -14,10 +14,10 @@ const ProjectGrid = ({ count = devProjects.length, searchTerm = "" }: ProjectGri
       return devProjects;
     }
     
+    const term = searchTerm.toLowerCase().trim();
     return devProjects.filter((project) =>
-      project.keywords.some((tech) =>
-        tech.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      project.keywords.some((keyword) => keyword.toLowerCase().includes(term)) ||
+      project.technologies.some((tech) => tech.toLowerCase().includes(term))
     );
   }, [searchTerm]);
 

@@ -7,6 +7,7 @@ import "../lib/fontawesome";
 import { NavigationProvider } from "./contexts/NavigationContext";
 import { BlobityProvider } from "./contexts/BlobityProvider";
 import { NAME, ROLE, PORTFOLIO_URL } from "@/constants/site";
+import AIChatGlobal from "@/components/tools/ai-chat-global";
 
 const TITLE = `${NAME} — ${ROLE}`;
 const DESCRIPTION =
@@ -98,6 +99,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <NavigationProvider>
           <BlobityProvider>
             {children}
+            <AIChatGlobal />
           </BlobityProvider>
         </NavigationProvider>
         <Analytics />

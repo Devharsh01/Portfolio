@@ -40,7 +40,7 @@ export const devProjects = [
     description:
       "A microservices-based Patient Management System decomposing the application into 5+ independent services (patient, appointment, billing), improving modularity and enabling 60% faster feature development.",
     technologies: ["Java", "Spring Boot", "Microservices", "Kafka", "Docker", "AWS LocalStack"],
-    keywords: ["patient-management", "java", "spring-boot", "microservices", "kafka", "docker", "localstack", "aws", "backend", "scalable", "distributed-systems"],
+    keywords: ["patient-management", "java", "spring-boot", "microservices", "kafka", "docker", "localstack", "aws", "backend", "scalable", "distributed-systems", "billing", "appointment", "rest-api", "rest", "api", "spring-cloud", "sql", "postgresql", "maven", "containers", "sqs", "sns", "s3", "cloud-computing", "spring", "spring-mvc", "spring-data-jpa", "jpa", "hibernate", "message-broker", "localstack-aws", "aws-localstack"],
     github: "https://github.com/Devharsh01/Patient-Management-System",
     demo: "",
     image: require("public/projects/PMS.png"),
@@ -52,7 +52,7 @@ export const devProjects = [
     description:
       "A full-stack autonomous AI 'Executive Assistant' SaaS that runs background tasks autonomously, processes Gmail/Calendar data via Claude API and OAuth 2.0, with Drizzle ORM and PostgreSQL.",
     technologies: ["Next.js", "React", "TypeScript", "Vercel AI SDK", "Claude API", "Drizzle ORM", "PostgreSQL"],
-    keywords: ["exec-os", "ai-agent", "autonomous", "vercel-ai-sdk", "claude-api", "cron", "drizzle", "postgresql", "saas", "agentic-workflows"],
+    keywords: ["exec-os", "ai-agent", "autonomous", "vercel-ai-sdk", "claude-api", "cron", "drizzle", "postgresql", "saas", "agentic-workflows", "react", "reactjs", "nextjs", "next.js", "typescript", "ts", "javascript", "js", "node", "nodejs", "anthropic", "claude", "gmail", "calendar", "google-calendar", "oauth", "oauth-2.0", "google-oauth", "gmail-api", "google-apis", "database", "orm", "tailwindcss", "tailwind", "tailwind-css", "ai", "artificial-intelligence", "llm", "large-language-models", "background-tasks", "scheduler", "automation", "productivity", "saas-platform", "openai-alternative", "serverless", "vercel", "edge-functions", "react-query", "tanstack-query", "shadcn-ui", "radix-ui", "lucide-react", "zod", "email-automation", "workflow-automation", "task-management", "autonomous-agents"],
     github: "https://github.com/Devharsh01/Exec-OS",
     demo: "https://exec-os-executive-assistant.vercel.app/",
     image: require("public/projects/ExecOS.png"),

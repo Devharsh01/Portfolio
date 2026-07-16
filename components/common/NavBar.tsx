@@ -23,7 +23,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className={`fixed bottom-10 left-0 right-0 z-50 my-0 mx-auto flex items-center justify-center gap-1 rounded-lg bg-[#07070a]/90 px-1 py-1 text-[#e4ded7] backdrop-blur-md md:p-2 ${
+    <nav className={`fixed bottom-16 sm:bottom-10 left-0 right-0 z-50 my-0 mx-auto flex items-center justify-center gap-1 rounded-lg bg-[#07070a]/90 px-1 py-1 text-[#e4ded7] backdrop-blur-md md:p-2 ${
       isHomePage 
         ? "w-[380px] sm:w-[480px] lg:w-[490px]" 
         : "w-[200px] sm:w-[240px] lg:w-[260px]"

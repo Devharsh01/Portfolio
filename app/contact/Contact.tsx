@@ -102,7 +102,7 @@ export default function Contact() {
     <>
       <style jsx global>{customStyles}</style>
       <motion.section
-      className="relative z-10 flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0E1016] bg-cover bg-center py-4 sm:py-8 md:py-12 lg:py-16"
+      className="relative z-10 flex min-h-fit md:min-h-screen w-full items-center justify-center overflow-hidden bg-[#0E1016] bg-cover bg-center py-10 md:py-12 lg:py-16"
       id="contact"
       initial="initial"
       animate="animate"

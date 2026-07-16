@@ -31,21 +31,21 @@ const DetailedProjectCard = ({
           position: "relative",
         } as React.CSSProperties
       }
-      className={`relative z-10 h-[400px] w-full items-stretch justify-center overflow-hidden rounded-3xl bg-center py-0 sm:h-[450px] sm:w-[100%] md:h-[420px] md:w-[100%] lg:h-[380px]`}
+      className={`relative z-10 h-fit w-full items-stretch justify-center overflow-hidden rounded-3xl bg-center p-8 sm:p-0 sm:h-[450px] sm:w-[100%] md:h-[420px] md:w-[100%] lg:h-[380px]`}
       initial="initial"
       animate="animate"
     >
       <Image
         src={image}
         alt={name}
-        className={`absolute -bottom-2 w-[65%] sm:w-[75%] md:w-[55%] lg:max-w-[50%] ${
+        className={`hidden sm:block absolute -bottom-2 w-[65%] sm:w-[75%] md:w-[55%] lg:max-w-[50%] ${
           id % 2 === 0 ? "right-0" : "left-0"
         }`}
       />
       <div
-        className={`absolute top-0 text-[#0E1016] ${
-          id % 2 === 0 ? "left-0 ml-8 lg:ml-14" : "right-0 mr-8 lg:mr-14"
-        } mt-4 flex items-center justify-center gap-4 lg:mt-8`}
+        className={`relative sm:absolute top-0 text-[#0E1016] ${
+          id % 2 === 0 ? "left-0 sm:ml-8 lg:ml-14" : "left-0 sm:left-auto sm:right-0 sm:mr-8 lg:mr-14"
+        } sm:mt-4 flex items-center justify-start sm:justify-center gap-4 lg:mt-8 mb-6 sm:mb-0`}
       >
         {available ? (
           <>
@@ -108,11 +108,11 @@ const DetailedProjectCard = ({
         )}
       </div>
       <div
-        className={`absolute text-white  ${
+        className={`relative sm:absolute text-white ${
           !(id % 2 === 0)
-            ? "right-0 top-20 mr-0 ml-10 md:right-0 md:ml-0 lg:right-0 lg:top-24 lg:mr-4"
-            : "left-10 top-20 ml-0 md:mr-12 lg:top-20 lg:ml-4"
-        } mb-6 md:mb-8 lg:mb-6 `}
+            ? "left-0 sm:left-auto sm:right-0 sm:top-20 sm:ml-10 md:right-0 md:ml-0 lg:right-0 lg:top-24 lg:mr-4"
+            : "left-0 sm:left-10 sm:top-20 md:mr-12 lg:top-20 lg:ml-4"
+        } mb-0 sm:mb-6 md:mb-8 lg:mb-6`}
       >
         <AnimatedTitle
           text={name}
@@ -122,22 +122,39 @@ const DetailedProjectCard = ({
           wordSpace={"mr-[0.25em]"}
           charSpace={"-mr-[0.01em]"}
         />
+        {/* Mobile: entire description */}
+        <AnimatedBody
+          text={description}
+          className="block sm:hidden mt-3 w-[90%] max-w-[500px] text-[14px] font-medium text-[#95979D] leading-relaxed"
+        />
+        {/* Desktop: truncated description */}
         <AnimatedBody
           text={description.length > 120 ? `${description.substring(0, 120)}...` : description}
-          className={
-            "mt-3 w-[90%] max-w-[500px] text-[14px] font-medium text-[#95979D] leading-relaxed"
-          }
+          className="hidden sm:block mt-3 w-[90%] max-w-[500px] text-[14px] font-medium text-[#95979D] leading-relaxed"
         />
-        <div className="mt-4 flex flex-wrap gap-2 items-baseline">
+        
+        {/* Mobile: all tech stacks */}
+        <div className="flex sm:hidden mt-4 flex-wrap gap-2 items-baseline">
+          {technologies.map((tech, techId) => (
+            <AnimatedTitle
+              text={tech}
+              wordSpace={"mr-[0.25em]"}
+              charSpace={"mr-[0.01em]"}
+              key={techId}
+              className="text-[12px] font-bold uppercase text-[#e4ded7]/80"
+            />
+          ))}
+        </div>
+
+        {/* Desktop: truncated tech stacks */}
+        <div className="hidden sm:flex mt-4 flex-wrap gap-2 items-baseline">
           {technologies.slice(0, 3).map((tech, techId) => (
             <AnimatedTitle
               text={tech}
               wordSpace={"mr-[0.25em]"}
               charSpace={"mr-[0.01em]"}
               key={techId}
-              className={
-                "text-[12px] font-bold uppercase md:text-[13px] lg:text-[14px] text-[#e4ded7]/80"
-              }
+              className="text-[12px] font-bold uppercase md:text-[13px] lg:text-[14px] text-[#e4ded7]/80"
             />
           ))}
           {technologies.length > 3 && (

@@ -19,7 +19,7 @@ export default function Experience() {
         </div>
         <ul className="list-disc pl-5 flex flex-col gap-2.5 text-[#95979D] text-[14px] md:text-[15px] leading-relaxed">
           {exp.description.map((bullet, idx) => (
-            <li key={idx} className="hover:text-[#e4ded7] transition-colors duration-200">
+            <li key={idx} className={`hover:text-[#e4ded7] transition-colors duration-200 ${idx >= 3 ? "hidden md:list-item" : ""}`}>
               {bullet}
             </li>
           ))}
