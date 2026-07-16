@@ -24,7 +24,7 @@ export const LEETCODE_URL = "https://leetcode.com/u/Dev_Harsh01/";
 // --- Links ---
 // Live portfolio URL (Vercel deployment)
 export const PORTFOLIO_URL =
-  "https://portfolio-dev-harshs-projects-0d266624.vercel.app";
+  "https://portfolio-lake-ten-73.vercel.app";
 
 // Resume — Google Drive link
 export const RESUME_URL =

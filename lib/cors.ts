@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { PORTFOLIO_URL } from "@/constants/site";
 
 // Allowed origins
+const envOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(",") : [];
 const allowedOrigins = [
   "http://localhost:3000",
+  "https://portfolio-lake-ten-73.vercel.app",
+  PORTFOLIO_URL,
   "",
+  ...envOrigins
 ];
 
 // Development environment check

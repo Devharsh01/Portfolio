@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { ChatOpenAI, ChatOpenAICallOptions } from "@langchain/openai";
 import { TavilySearch } from "@langchain/tavily";
 import {
   HumanMessage,
@@ -10,7 +9,6 @@ import {
 import { StateGraph, MessagesAnnotation } from "@langchain/langgraph";
 import { NextResponse, NextRequest } from "next/server";
 import { headers } from "next/headers";
-// import { queryVectorStore } from "@/lib/embeddings";
 import jwt from "jsonwebtoken";
 import { characterContent } from "@/constants/character";
 import { experiences } from "@/constants/experience";
@@ -59,11 +57,12 @@ export function generateToken(payload: any): string {
 
 // Add CORS check middleware
 function isAllowedOrigin(origin: string | null) {
+  const envOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(",") : [];
   const allowedOrigins = [
     PORTFOLIO_URL,
-
-    // Include localhost for development(uncomment for development)
+    "https://portfolio-lake-ten-73.vercel.app",
     "http://localhost:3000",
+    ...envOrigins
   ];
   return origin && allowedOrigins.includes(origin);
 }

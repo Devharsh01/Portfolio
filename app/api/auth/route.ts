@@ -6,9 +6,12 @@ import { PORTFOLIO_URL } from "@/constants/site";
 
 // Function to check if origin is allowed (same as in your chat route)
 function isAllowedOrigin(origin: string | null) {
+  const envOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(",") : [];
   const allowedOrigins = [
     PORTFOLIO_URL, // production
+    "https://portfolio-lake-ten-73.vercel.app",
     "http://localhost:3000", // for development
+    ...envOrigins
   ];
   return origin && allowedOrigins.includes(origin);
 }
